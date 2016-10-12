@@ -1,12 +1,12 @@
 <?php $this->start('navigation')?>
 <div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="#">Accueil</a></li>
+					<li class="active"><?= $this->Html->link(__('Accueil'), ['action' => 'index']) ?></li>
 					<li><a href="about.html">A propos</a></li>
 					<li><a href="about.html">Utilisateurs</a></li>
 					<li><a href="about.html">Sondages</a></li>
 					<li><a href="contact.html">Contact</a></li>
-					<li><a class="btn" href="signin.html">CONNEXION</a></li>
+					<li><?= $this->Html->link(__('CONNEXION'), ['controller' => 'Connexion'], ['class' => 'btn']) ?></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 <?php $this->end()?>
@@ -15,9 +15,9 @@
 	<header id="head">
 		<div class="container">
 			<div class="row">
-				<h1 class="lead" style="color: #1e1e4a; font-weight: bold">TOP H.IT</h1>
-				<p class="tagline" style="color: #1e1e4a; font-weight: bold; font-size: 20px">les sondages des plus grands titres musicaux</p>
-				<p><a class="btn btn-default btn-lg" role="button">PLUS D'INFO</a> <a class="btn btn-action btn-lg" role="button" style="background: #1e1e4a"">SONDAGES</a></p>
+				<h1 class="lead" style="color: #1e1e4a; text-shadow: 2px 2px 4px white; font-weight: bold;">TOP H.IT</h1>
+				<p class="tagline" style="color: #1e1e4a; text-shadow: 2px 2px 4px white; font-size: 24px; font-weight: bold;">les sondages des plus grands titres musicaux</p>
+				<p><a class="btn btn-default btn-lg" role="button">PLUS D'INFO</a> <a class="btn btn-action btn-lg" role="button" style="background: #1e1e4a">SONDAGES</a></p>
 			</div>
 		</div>
 	</header>
