@@ -1,14 +1,5 @@
 <?php $this->start('navigation')?>
-<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav pull-right">
-					<li><?= $this->Html->link(__('Accueil'), ['controller' => 'Home', 'action' => 'index']) ?></li>
-					<li><a>A propos</a></li>
-					<li><a>Utilisateurs</a></li>
-					<li><a>Sondages</a></li>
-					<li><a>Contact</a></li>
-					<li class="active"><?= $this->Html->link(__('CONNEXION'), ['action' => 'index'], ['class' => 'btn']) ?></li>
-				</ul>
-			</div><!--/.nav-collapse -->
+	<?= $this->element("menu", ["activeItem" => "CONNEXION"]); ?>
 <?php $this->end()?>
 
 <header id="head" class="secondary"></header>

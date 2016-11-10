@@ -43,22 +43,22 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
-        	'authenticate' => [
-        		'Form' => [
-        			'fields' => [
-        					'username' => 'username',
-        					'password' => 'password'
-        			]
-        		]
-        	],
-        	'loginAction' => [
-        		'controller' => 'Users',
-        		'action' => 'login'
-        	]
-        ]);
+//         $this->loadComponent('Auth', [
+//         	'authenticate' => [
+//         		'Form' => [
+//         			'fields' => [
+//         					'username' => 'username',
+//         					'password' => 'password'
+//         			]
+//         		]
+//         	],
+//         	'loginAction' => [
+//         		'controller' => 'Users',
+//         		'action' => 'login'
+//         	]
+//         ]);
         
-        $this->Auth->allow(['display']);
+//         $this->Auth->allow(['display']);
     }
 
     /**
@@ -76,8 +76,8 @@ class AppController extends Controller
         }
     }
     
-    public function isAuthorized($user)
-    {	
-    	return false;
-    }
+//     public function isAuthorized($user)
+//     {	
+//     	return false;
+//     }
 }
