@@ -9,6 +9,10 @@ class HomeController extends AppController
 		
 	}
 	
+	public function about(){
+	
+	}
+	
 
 // 	public function beforeFilter(Event $event){
 	

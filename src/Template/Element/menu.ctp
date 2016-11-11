@@ -3,7 +3,7 @@
 					<li class= <?= (!empty($activeItem) && ($activeItem =='Home') )?'active' :'inactive' ?>>
 						<?= $this->Html->link('Accueil', ['controller' => 'Home','action' =>'index']) ?></li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='About') )?'active' :'inactive' ?>>
-						<?= $this->Html->link('A propos', ['controller' => 'About','action' =>'index']) ?></li>
+						<?= $this->Html->link('A propos', ['controller' => 'Home','action' =>'about']) ?></li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='Users') )?'active' :'inactive' ?>>
 						<?= $this->Html->link('Utilisateurs', ['controller' => 'Users','action' =>'add']) ?></li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='Polls') )?'active' :'inactive' ?>>
