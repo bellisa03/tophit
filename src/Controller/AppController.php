@@ -27,6 +27,18 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
+	public function beforeFilter(Event $event)
+	{
+		parent::beforeFilter($event);
+		
+	}
+	/*
+	 * Déclaration d'une variable publique qui fait référence à mon template d'aide à la configuration des formulaires.
+	 * le fichier se trouve dans config/my_template.php
+	 * */
+	public $helpers = [
+		'Form' =>['templates'=>'my_template']
+	];
 
     /**
      * Initialization hook method.
@@ -43,23 +55,18 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-//         $this->loadComponent('Auth', [
-//         	'authenticate' => [
-//         		'Form' => [
-//         			'fields' => [
-//         					'username' => 'username',
-//         					'password' => 'password'
-//         			]
-//         		]
-//         	],
-//         	'loginAction' => [
-//         		'controller' => 'Users',
-//         		'action' => 'login'
-//         	]
-//         ]);
-        
-//         $this->Auth->allow(['display']);
+        $this->loadComponent('Auth', [
+        		'loginRedirect' => [
+        				'controller' => 'Polls',
+        				'action' => 'index'
+        		],
+        		'logoutRedirect' => [
+        				'controller' => 'Home',
+        				'action' => 'index'
+        		]
+        ]);
     }
+
 
     /**
      * Before render callback.
@@ -76,8 +83,12 @@ class AppController extends Controller
         }
     }
     
-//     public function isAuthorized($user)
-//     {	
-//     	return false;
-//     }
+
+    public function isAuthorized($user)
+    {
+    	if (isset($user['role']) && $user['role'] === 'user')
+    	{
+    		return true;
+    	}
+    }
 }

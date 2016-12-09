@@ -8,7 +8,7 @@
 	
 	<title>TopH.it</title>
 
-	<?= $this->Html->script('gt_favicon.png')?>
+	<?= $this->Html->meta('cake.icon.png', '/webroot/img/music_favicon.png', ['type'=> 'icon'])?>
 	
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<?= $this->Html->css('bootstrap.min.css')?>

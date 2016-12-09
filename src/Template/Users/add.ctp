@@ -28,24 +28,25 @@
 						<?= $this->Form->create() ?>
 							
 						<div class="top-margin">
-							<?= $this->Form->input('username', ['label' => 'Nom d\'utilisateur', 'class' => 'form-control'])?>						
+							<?= $this->Form->input('username', ['label' => 'Nom d\'utilisateur'])?>						
 						</div>
 						<div class="top-margin">
-							<?= $this->Form->input('email', ['label' => 'Email', 'class' => 'form-control'])?>
+							<?= $this->Form->input('email', ['label' => 'Email'])?>
 						</div>
 						<div class="top-margin">
 							<?= $this->Form->label('Rôle')?>
-							<?= $this->Form->select('role', ['class' => 'form-control'])?>
+							<?= $this->Form->select('role')?>
 						</div>
 						<div class="top-margin">
-							<?= $this->Form->input('text', ['id'=>'password', 'label' => 'Mot de passe', 'class' => 'form-control'])?>
+							<?= $this->Form->input('text', ['id'=>'password', 'label' => 'Mot de passe'])?>
 							<br>
 							<?= $this->Form->button(__('Générer'), ['onclick'=>'generate()', 'class' => 'btn btn-default', 'type' => 'button'])?>
 						</div>
 						<hr>
 						<br>
 						<div class="top-margin">
-							<?= __('Connexion via Facebook*')?>
+							<span style= "font-weight: bold; padding-right: 20px; color:#555"><?= __('Connexion via Facebook*')?></span>
+							
 							<?= $this->Form->button(__('Obtenir un jeton'), ['class' => 'btn btn-default'])?>
 							
 						</div>
@@ -54,15 +55,13 @@
 							<?= $this->Form->button(__('Valider'), ['class' => 'btn btn-action', 'style' => 'background: #6a6aa5; color: white'])?>
 						</div>
     					<?= $this->Form->end() ?>
-    					
-    					<br>
-    					<br>
+    				</div>
     					
     					<div class="thin text-center">
 							<p>*si l'utilisateur souhaite se connecter grâce à son compte Facebook, son nom d'utilisateur devra correspondre à son identifiant Facebook</p>
 						</div>
 
-					</div>
+					
 					
 
 				</div>

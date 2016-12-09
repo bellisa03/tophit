@@ -26,28 +26,29 @@
 							<h3 class="thin text-center">Connexion à votre compte Top-H.it</h3>
 							<p class="text-center text-muted">(se connecter grâce à votre compte <?= $this->Html->link(__('Facebook'), ['controller' => 'Home', 'action' => 'index']) ?>) </p>
 							<hr>
-							
-							<form>
+							<?= $this->Form->create()?>
+						
 								<div class="top-margin">
-									<label>Nom d'utilisateur/Email <span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+								<?php 
+									echo $this->Form->input('username', ['label' => 'Nom d\'utilisateur/Email*'])
+								?>						
 								</div>
 								<div class="top-margin">
-									<label>Mot de passe <span class="text-danger">*</span></label>
-									<input type="password" class="form-control">
+								<?php 
+									echo $this->Form->input('password', ['label' => 'Mot de passe*'])?>
 								</div>
-
 								<hr>
-
+						
 								<div class="row">
 									<div class="col-lg-8">
 										<b><a href="">Problème de connexion</a></b>
 									</div>
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" type="submit" style="background: #1e1e4a">Connexion</button>
+										<?= $this->Form->button(__('Connexion'), ['class' => 'btn btn-action', 'style' => 'background: #1e1e4a;'])?>
 									</div>
 								</div>
-							</form>
+							
+							<?= $this->Form->end() ?>
 						</div>
 					</div>
 

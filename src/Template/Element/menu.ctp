@@ -11,6 +11,11 @@
 					<li class= <?= (!empty($activeItem) && ($activeItem =='Contact') )?'active' :'inactive' ?>>
 						<?= $this->Html->link('Contact', ['controller' => 'Home','action' =>'contact']) ?></li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='CONNEXION') )?'active' :'inactive' ?>>
-						<?= $this->Html->link('CONNEXION', ['controller' => 'Users','action' =>'login'], ['class' => 'btn']) ?></li>
+						<?php if (isset($user) && $user != null) {?>
+							<?= $this->Html->link('Bonjour ' . $user->username. ' - DECONNEXION', ['controller' => 'Users','action' =>'logout'], ['class' => 'btn']) ?>
+						<?php } else {?>
+							<?= $this->Html->link('CONNEXION', ['controller' => 'Users','action' =>'login'], ['class' => 'btn']) ?>
+						<?php }?>
+						</li>
 				</ul>
 			</div><!--/.nav-collapse -->
