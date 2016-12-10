@@ -56,12 +56,20 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
+        		'authenticate' => [
+        				'Form' => [
+        					'fields' => [
+        						'username'=> 'login',
+        						'password' => 'password'
+        					]	
+        				]
+        		],
         		'loginRedirect' => [
         				'controller' => 'Polls',
         				'action' => 'index'
         		],
         		'logoutRedirect' => [
-        				'controller' => 'Home',
+        				'controller' => 'Users',
         				'action' => 'index'
         		]
         ]);

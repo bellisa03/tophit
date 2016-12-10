@@ -10,7 +10,7 @@
 		<ol class="breadcrumb">
 			<li><?= $this->Html->link(__('Accueil'), ['controller' => 'Home', 'action' => 'index']) ?></li>
 			<li><?= $this->Html->link(__('Utilisateurs'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-			<li class="active"><?= __('Nouveau Profil') ?></li>
+			<li class="active"><?= __('Modifier Profil') ?></li>
 		</ol>
 
 		<div class="row">
@@ -24,8 +24,8 @@
 				<div class="col-md-10 col-md-offset-1 col-sm-4 col-sm-offset-2">
 					
 					<div class="panel-body">
-						<h2 class="thin text-left">Nouveau Profil</h2>
-						<?= $this->Form->create() ?>
+						<h2 class="thin text-left">Modifier Profil</h2>
+						<?= $this->Form->create($user) ?>
 							
 						<div class="top-margin">
 							<?= $this->Form->input('login', ['label' => 'Nom d\'utilisateur'])?>						
