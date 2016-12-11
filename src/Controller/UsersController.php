@@ -25,11 +25,17 @@ class UsersController extends AppController
 			$this->set('user', $user);
 		}
 	}
+	
+// 	public function beforeSave(Event $event){
+// 		Cake\ORM\Table::beforeSave(Event $event);
+// 		$user->password = $user->text;
+// 	}
 
 
 	public function index()
 	{
 		$users = $this->paginate($this->Users);
+		//$users->role_name;
 		$this->set(compact('users'));
 		$this->set('_serialize', ['users']);
 	}
@@ -65,15 +71,16 @@ class UsersController extends AppController
 	
 	public function logout(){
 		$this->Flash->success('Vous êtes maintenant déconnecté.');
-		return $this->redirect($this->Auth->redirectUrl());
+		return $this->redirect($this->Auth->logout());
 	}
 
 	public function add() {
 	
 		$user = $this->Users->newEntity();
 		if ($this->request->is('post')) {
+			
 			$user = $this->Users->patchEntity($user, $this->request->data);
-			$user->created = getdate();
+			
 			var_dump($user);
 			var_dump($user);
 			if ($this->Users->save($user)) {
@@ -92,8 +99,22 @@ class UsersController extends AppController
 		$user = $this->Users->get($id, [
 				'contain' => []
 		]);
+		
 		if ($this->request->is(['patch', 'post', 'put'])) {
-			$user = $this->Users->patchEntity($user, $this->request->data);
+			$data = $this->request->data();
+			$user->login = $data['login'];
+			$user->password = $data['password'];
+			$user->email = $data['email'];
+			$user->lastname = $data['lastname'];
+			if($data['role'] == 'Admin'){
+				$user->role = 1;
+			}
+			if($data['role'] == 'Utilisateur'){
+				$user->role = 2;
+			}
+			$user->firstname = $data['firstname'];
+			
+			//$user = $this->Users->patchEntity($user, $this->request->data);
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('L\'utilisateur a été sauvegardé.'));
 				return $this->redirect(['action' => 'index']);
@@ -103,6 +124,18 @@ class UsersController extends AppController
 		}
 		$this->set(compact('user'));
 		$this->set('_serialize', ['user']);
+	}
+	
+	public function delete($id = null)
+	{
+		$this->request->allowMethod(['post', 'delete']);
+		$user = $this->Users->get($id);
+		if ($this->Users->delete($user)) {
+			$this->Flash->success(__('L\'utilisateur a été supprimé.'));
+		} else {
+			$this->Flash->error(__('L\'utilisateur n\'a pu être supprimé. Veuillez essayer à nouveau.'));
+		}
+		return $this->redirect(['action' => 'index']);
 	}
 	
 }

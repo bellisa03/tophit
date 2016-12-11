@@ -41,10 +41,11 @@
 		</div>
 	</div> 
 	<!-- /.navbar -->
-
+	
 	<?= $this->fetch('content') ?>
 	
-	
+	<?= $this->Flash->render() ?>
+	<?= $this->Flash->render('auth') ?>
 	<footer id="footer" class="top-space">
 
 		<div class="footer1" style="background-color: #1e1e4a">

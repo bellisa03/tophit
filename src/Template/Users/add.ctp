@@ -48,6 +48,7 @@
 							<br>
 							<?= $this->Form->button(__('Générer'), ['onclick'=>'generate()', 'class' => 'btn btn-default', 'type' => 'button'])?>
 						</div>
+						
 						<hr>
 						<br>
 						<div class="top-margin">
@@ -92,4 +93,5 @@
 	    password.value = randomPassword(8);
 	}
 </script>
-
+	
+	

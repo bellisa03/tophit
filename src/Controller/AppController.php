@@ -65,7 +65,7 @@ class AppController extends Controller
         				]
         		],
         		'loginRedirect' => [
-        				'controller' => 'Polls',
+        				'controller' => 'Users',
         				'action' => 'index'
         		],
         		'logoutRedirect' => [

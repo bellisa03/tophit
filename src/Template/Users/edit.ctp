@@ -41,12 +41,12 @@
 						</div>
 						<div class="top-margin">
 							<?= $this->Form->label('Rôle')?>
-							<?= $this->Form->select('role', [1, 2], ['empty' => '(choisissez)']);?>
+							<?= $this->Form->select('role', ['Admin', 'Utilisateur'], ['empty' => '(choisissez)']);?>
 						</div>
 						<div class="top-margin">
-							<?= $this->Form->input('text', ['id'=>'password', 'label' => 'Mot de passe'])?>
+							<?= $this->Form->input('password', ['label' => 'Mot de passe'])?>
 							<br>
-							<?= $this->Form->button(__('Générer'), ['onclick'=>'generate()', 'class' => 'btn btn-default', 'type' => 'button'])?>
+							
 						</div>
 						<hr>
 						<br>
@@ -77,19 +77,4 @@
 
 		</div>
 	</div>	<!-- /container -->
-	<script type="text/javascript">
-	function randomPassword(length) {
-	    var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*-+<>ABCDEFGHIJKLMNOP1234567890";
-	    var pass = "";
-	    for (var x = 0; x < length; x++) {
-	        var i = Math.floor(Math.random() * chars.length);
-	        pass += chars.charAt(i);
-	    }
-	    return pass;
-	}
-
-	function generate() {
-	    password.value = randomPassword(8);
-	}
-</script>
-
+	

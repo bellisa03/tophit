@@ -41,4 +41,23 @@ class User extends Entity
     protected $_hidden = [
         'password'
     ];
+    
+    public function _getRoleName(){
+    	$role = new Role();
+    	$role->id = $this->_properties['role'];
+    	if($role->id == 1){
+    		return $role->setName('Admin');
+    	}
+    	if($role->id == 2){
+    		return $role->setName('Utilisateur');
+    	}
+    	else{
+    		return 'Rôle invalide';
+    	}
+    }
+    
+//     protected function _setPassword($value)
+//     {
+//     	return (new DefaultPasswordHasher)->hash($value);
+//     }
 }
