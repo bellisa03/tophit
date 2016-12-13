@@ -48,7 +48,7 @@
 						                <td><?= h($user->lastname) ?></td>
 						                <td><?= h($user->firstname) ?></td>
 						                <td><?= h($user->email) ?></td>
-						                <td><?= h($user->role) ?></td>
+						                <td><?= h($user->roleName) ?></td>
 						                <td><?= h($user->created) ?></td>
 						                <td><?= h($user->modified) ?></td>
 						                <td class="actions">
@@ -59,14 +59,7 @@
 						            <?php endforeach; ?>
 						        </tbody>
 						    </table>
-						    <div class="paginator">
-						        <ul class="pagination">
-						            <?= $this->Paginator->prev('< ' . __('précédent')) ?>
-						            <?= $this->Paginator->numbers() ?>
-						            <?= $this->Paginator->next(__('suivant') . ' >') ?>
-						        </ul>
-						        <p><?= $this->Paginator->counter() ?></p>
-						    </div>
+
 						</div>
 					</div>
 		<nav role="navigation" style="padding-bottom: 30px">

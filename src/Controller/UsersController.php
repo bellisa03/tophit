@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\Entity\User;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use App\Model\BU\UserManager;
 
 
 class UsersController extends AppController
@@ -34,8 +35,9 @@ class UsersController extends AppController
 
 	public function index()
 	{
-		$users = $this->paginate($this->Users);
-		//$users->role_name;
+		$users = UserManager::getUsers();
+		
+		//var_dump($users);
 		$this->set(compact('users'));
 		$this->set('_serialize', ['users']);
 	}

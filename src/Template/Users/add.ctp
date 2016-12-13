@@ -25,7 +25,7 @@
 					
 					<div class="panel-body">
 						<h2 class="thin text-left">Nouveau Profil</h2>
-						<?= $this->Form->create() ?>
+						<?= $this->Form->create($user) ?>
 							
 						<div class="top-margin">
 							<?= $this->Form->input('login', ['label' => 'Nom d\'utilisateur'])?>						

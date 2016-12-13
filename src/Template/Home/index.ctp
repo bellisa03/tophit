@@ -8,7 +8,7 @@
 			<div class="row">
 				<h1 class="lead" style="color: #1e1e4a; text-shadow: 2px 2px 4px white; font-weight: bold;">TOP H.IT</h1>
 				<p class="tagline" style="color: #1e1e4a; text-shadow: 2px 2px 4px white; font-size: 24px; font-weight: bold;">les sondages des plus grands titres musicaux</p>
-				<p><?= $this->Html->link('PLUS D\'INFO', ['action' =>'about'], ['class' => 'btn btn-default btn-lg']) ?> <?= $this->Html->link('SONDAGES', ['controller' => 'Polls', 'action' =>'about'], ['class' => 'btn btn-action btn-lg', 'style' => 'background: #1e1e4a']) ?></p>
+				<p><?= $this->Html->link('PLUS D\'INFO', ['action' =>'about'], ['class' => 'btn btn-default btn-lg']) ?> <?= $this->Html->link('SONDAGES', ['controller' => 'Polls', 'action' =>'index'], ['class' => 'btn btn-action btn-lg', 'style' => 'background: #1e1e4a']) ?></p>
 			</div>
 		</div>
 	</header>

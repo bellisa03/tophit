@@ -4,8 +4,13 @@
 						<?= $this->Html->link('Accueil', ['controller' => 'Home','action' =>'index']) ?></li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='About') )?'active' :'inactive' ?>>
 						<?= $this->Html->link('A propos', ['controller' => 'Home','action' =>'about']) ?></li>
-					<li class= <?= (!empty($activeItem) && ($activeItem =='Users') )?'active' :'inactive' ?>>
-						<?= $this->Html->link('Utilisateurs', ['controller' => 'Users','action' =>'add']) ?></li>
+					<li class="dropdown, <?= (!empty($activeItem) && ($activeItem =='Users') )?'active' :'inactive' ?>">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilisateurs <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><?= $this->Html->link('Index', ['controller' => 'Users','action' =>'index']) ?></li>
+							<li><?= $this->Html->link('Nouveau Profil', ['controller' => 'Users','action' =>'add']) ?></li>
+						</ul>
+					</li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='Polls') )?'active' :'inactive' ?>>
 						<?= $this->Html->link('Sondages', ['controller' => 'Polls','action' =>'index']) ?></li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='Contact') )?'active' :'inactive' ?>>

@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\BU\MusicServiceAgent;
 
 /**
  * Poll Entity
@@ -30,4 +31,17 @@ class Poll extends Entity
         '*' => true,
         'id' => false
     ];
+    
+    public $musicGenreFullName;
+    
+    // ici fonction pour un track spécifique. l'attribut virtuel qui pourra ensuite être utilisé est $poll->music_genre_name
+    public function _getMusicGenreName(){
+    	$musicGenre = (new MusicServiceAgent())->getMusicGenre($this->_properties['musicstyleid']);
+    	if($musicGenre != null){
+    		return $musicGenre->getName();
+    	}
+    	else {
+    		return 'inconnu';
+    	}
+    }
 }

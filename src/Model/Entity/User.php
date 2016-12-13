@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Entity\Role;
 
 /**
  * User Entity
@@ -43,18 +44,26 @@ class User extends Entity
     ];
     
     public function _getRoleName(){
-    	$role = new Role();
-    	$role->id = $this->_properties['role'];
-    	if($role->id == 1){
-    		return $role->setName('Admin');
-    	}
-    	if($role->id == 2){
-    		return $role->setName('Utilisateur');
+    	if($this->_properties['role'] != null){
+    		if($this->_properties['role'] == 1){
+    			return 'Admin';
+    		}
+    		if($role->id == 2){
+    			return 'Utilisateur';
+    		}
+    		else{
+    			return 'Rôle invalide';
+    		}
     	}
     	else{
-    		return 'Rôle invalide';
+    		return 'Rôle indéfini';
     	}
+    	
     }
+    
+    /* attribut virtuel */
+    
+    public $roleName;
     
 //     protected function _setPassword($value)
 //     {
