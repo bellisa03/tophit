@@ -11,12 +11,15 @@ class UserManager
 		$users = TableRegistry::get('Users')->find();
 		 
 		foreach ($users as $user){
-			if($user->role == 1){
-				$user->roleName = 'Admin';
+			if($user->role != null){
+				if($user->role == 1){
+					$user->roleName = 'Admin';
+				}
+				else{
+					$user->roleName = 'Utilisateur';
+				}
 			}
-			if($user->role == 2){
-				$user->roleName = 'Utilisateur';
-			}
+			
 			else{
 				$user->roleName = "Indéfini";
 			}

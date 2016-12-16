@@ -2,8 +2,10 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use App\Model\Entity\Role;
 
+
+define('ADMIN', 'Administrateur');
+define('USER', 'Utilisateur');
 /**
  * User Entity
  *
@@ -43,13 +45,14 @@ class User extends Entity
         'password'
     ];
     
+    //attribut virtuel qui permet de gérer les rôles qui proviennent sous forme numérique depuis la BD.
     public function _getRoleName(){
     	if($this->_properties['role'] != null){
     		if($this->_properties['role'] == 1){
-    			return 'Admin';
+    			return ADMIN;
     		}
-    		if($role->id == 2){
-    			return 'Utilisateur';
+    		if($this->_properties['role'] == 2){
+    			return USER;
     		}
     		else{
     			return 'Rôle invalide';
@@ -61,8 +64,7 @@ class User extends Entity
     	
     }
     
-    /* attribut virtuel */
-    
+    //Champ virtuel
     public $roleName;
     
 //     protected function _setPassword($value)

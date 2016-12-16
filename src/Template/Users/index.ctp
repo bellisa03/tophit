@@ -48,7 +48,7 @@
 						                <td><?= h($user->lastname) ?></td>
 						                <td><?= h($user->firstname) ?></td>
 						                <td><?= h($user->email) ?></td>
-						                <td><?= h($user->roleName) ?></td>
+						                <td><?= h($user->role_name) ?></td>
 						                <td><?= h($user->created) ?></td>
 						                <td><?= h($user->modified) ?></td>
 						                <td class="actions">
@@ -73,5 +73,13 @@
 			<!-- /Article -->
 
 		</div>
+		<div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->prev('< ' . __('précédent')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('suivant') . ' >') ?>
+        </ul>
+        <p><?= $this->Paginator->counter() ?></p>
+    </div>
 	</div>	<!-- /container -->
 	

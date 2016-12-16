@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Model\Entity\User;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
-use App\Model\BU\UserManager;
 
 
 class UsersController extends AppController
@@ -35,9 +34,8 @@ class UsersController extends AppController
 
 	public function index()
 	{
-		$users = UserManager::getUsers();
+		$users = $this->paginate($this->Users);
 		
-		//var_dump($users);
 		$this->set(compact('users'));
 		$this->set('_serialize', ['users']);
 	}
@@ -77,14 +75,20 @@ class UsersController extends AppController
 	}
 
 	public function add() {
+		
+		$roles[1] = ADMIN;
+		$roles[2] = USER;
 	
 		$user = $this->Users->newEntity();
 		if ($this->request->is('post')) {
+			$data = $this->request->data();
+			$user->login = $data['login'];
+			$user->password = $data['password'];
+			$user->email = $data['email'];
+			$user->lastname = $data['lastname'];
+			$user->role = $data['role'];
+			$user->firstname = $data['firstname'];
 			
-			$user = $this->Users->patchEntity($user, $this->request->data);
-			
-			var_dump($user);
-			var_dump($user);
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('L\'utilisateur a été sauvegardé.'));
 				return $this->redirect(['action' =>'index']);
@@ -92,7 +96,8 @@ class UsersController extends AppController
 				$this->Flash->error(__('L\'utilisateur n\'a pu être sauvegardé. Veuillez essayer à nouveau.'));
 			}
 		}
-		$this->set(compact('user'));
+		
+		$this->set(compact('user', 'roles'));
 		$this->set('_serialize', ['user']);
 	}
 	
@@ -108,15 +113,9 @@ class UsersController extends AppController
 			$user->password = $data['password'];
 			$user->email = $data['email'];
 			$user->lastname = $data['lastname'];
-			if($data['role'] == 'Admin'){
-				$user->role = 1;
-			}
-			if($data['role'] == 'Utilisateur'){
-				$user->role = 2;
-			}
+			$user->role = $data['role'];
 			$user->firstname = $data['firstname'];
 			
-			//$user = $this->Users->patchEntity($user, $this->request->data);
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('L\'utilisateur a été sauvegardé.'));
 				return $this->redirect(['action' => 'index']);
@@ -124,7 +123,11 @@ class UsersController extends AppController
 				$this->Flash->error(__('L\'utilisateur n\'a pu être sauvegardé. Veuillez essayer à nouveau.'));
 			}
 		}
-		$this->set(compact('user'));
+		
+		$roles[1] = ADMIN;
+		$roles[2] = USER;
+		
+		$this->set(compact('user', 'roles'));
 		$this->set('_serialize', ['user']);
 	}
 	

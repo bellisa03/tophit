@@ -41,10 +41,10 @@
 						</div>
 						<div class="top-margin">
 							<?= $this->Form->label('Rôle')?>
-							<?= $this->Form->select('role', [1, 2], ['empty' => '(choisissez)']);?>
+							<?= $this->Form->select('role', $roles, ['empty' => '(choisissez)']);?>
 						</div>
 						<div class="top-margin">
-							<?= $this->Form->input('text', ['id'=>'password', 'label' => 'Mot de passe'])?>
+							<?= $this->Form->input('password', ['label' => 'Mot de passe'])?>
 							<br>
 							<?= $this->Form->button(__('Générer'), ['onclick'=>'generate()', 'class' => 'btn btn-default', 'type' => 'button'])?>
 						</div>
