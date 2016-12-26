@@ -15,14 +15,14 @@ class MusicServiceAgent
 		$this->soapClient = new \SoapClient($this->address); 
 	}	
 
-	public function getMusicGenreList(){
+	public function getMusicGenresList() {
+	
 		$resultsWebService = $this->soapClient->GetMusicGenres();
 		$genreResults = $resultsWebService->GetMusicGenresResult->MusicGenre;
 	
-		$musicGenres = [];
-		foreach ($genreResults as $genreResult){
-				$musicGenre = new MusicGenre($genreResult->GenreID, $genreResult->Name);
-				$musicGenres[] = $musicGenre;
+		$musicGenres = array();
+		foreach ($genreResults as $genreResult) {
+			$musicGenres[$genreResult->GenreId] = $genreResult->Name;
 		}
 	
 		return $musicGenres;

@@ -9,8 +9,8 @@
 
 		<ol class="breadcrumb">
 			<li><?= $this->Html->link(__('Accueil'), ['controller' => 'Home', 'action' => 'index']) ?></li>
-			<li><?= $this->Html->link(__('Sondage'), ['controller' => 'Polls', 'action' => 'index']) ?></li>
-			<li class="active"><?= __('Nouveau Sondage') ?></li>
+			<li><?= $this->Html->link(__('Sondages'), ['controller' => 'Polls', 'action' => 'index']) ?></li>
+			<li class="active"><?= __('Modifier Profil') ?></li>
 		</ol>
 
 		<div class="row">
@@ -24,7 +24,7 @@
 				<div class="col-md-10 col-md-offset-1 col-sm-4 col-sm-offset-2">
 					
 					<div class="panel-body">
-						<h2 class="thin text-left">Nouveau Sondage</h2>
+						<h2 class="thin text-left">Modifier un sondage</h2>
 						<?= $this->Form->create($poll) ?>
 							
 						<div class="top-margin">
@@ -46,8 +46,8 @@
 						<div class="top-margin">
 							<?= $this->Form->label('Actif')?>
 							<?= $this->Form->checkbox('status', ['value' => 1, 'hiddenField' => 2])?>
-						</div>
-						
+						</div>	
+							
 						<div class="col-lg-12 text-right">
 							<?= $this->Form->button(__('Valider'), ['class' => 'btn btn-action', 'style' => 'background: #6a6aa5; color: white'])?>
 						</div>
