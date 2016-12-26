@@ -17,6 +17,9 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 
+define('ADMIN', 'Administrateur');
+define('USER', 'Utilisateur');
+
 /**
  * Application Controller
  *
@@ -65,13 +68,13 @@ class AppController extends Controller
         				]
         		],
         		'loginRedirect' => [
-        				'controller' => 'Users',
+        				'controller' => 'Polls',
         				'action' => 'index'
         		],
         		'logoutRedirect' => [
         				'controller' => 'Users',
-        				'action' => 'index'
-        		]
+        				'action' => 'login'
+        		],
         ]);
     }
 
@@ -94,9 +97,32 @@ class AppController extends Controller
 
     public function isAuthorized($user)
     {
-    	if (isset($user['role']) && $user['role'] === 'user')
+    	//rôle 1 = Admin, rôle 2 = Utilisateur
+//     	if (isset($user['role']) && ($user['role'] === 1 || $user['role'] === 2))
+//     	{
+//     		return true;
+//     	}
+    	
+    	if (isset($user['role']) && $user['role'] === 1)
     	{
     		return true;
+    	}
+    	if (isset($user['role']) && $user['role'] === 2)
+    	{
+    		if([$this->request->params['controller'], ['Users']]){
+    			if([$this->request->params['action'], ['index','add','edit','delete']]){
+    				return false;
+    			}
+    			else return true;
+    			
+    		}
+    		if([$this->request->params['controller'], ['Polls']]){
+    			if([$this->request->params['action'], ['index']]){
+    				return true;
+    			}
+    			else return false;
+    		}
+    		
     	}
     }
 }

@@ -11,11 +11,10 @@ class HomeController extends AppController
 
 	public function beforeFilter(Event $event){
 	
-		$this->Auth->allow(['index']);
+		$this->Auth->allow(['index', 'about']);
 		if ($this->Auth->user() != null){
-			$user = $this->Auth->user();
-		
-			$this->set('user', $user);
+			$connectedUser = $this->Auth->user();
+			$this->set('connectedUser', $connectedUser);
 		}
 	}
 	

@@ -57,7 +57,7 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('password', 'create')
-            ->notEmpty('password', ['message' => __('Vous devez fournir un password')]);
+            ->notEmpty('password');
 
         $validator
             ->email('email')

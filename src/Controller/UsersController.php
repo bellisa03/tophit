@@ -20,17 +20,17 @@ class UsersController extends AppController
 	
 		parent::beforeFilter($event);
 		
+		// la variable connectedUser permet d'éviter la confusion avec la variable user quand l'admin est connecté et ajoute ou modifie des utilisateurs.
+		
 		if ($this->Auth->user() != null){
-			$user = $this->Auth->user();
-			$this->set('user', $user);
+			$connectedUser = $this->Auth->user();
+			$this->set('connectedUser', $connectedUser);
 		}
+		
+// 		if(isset($connectedUser) && $connectedUser['role'] === 2){
+// 			$this->Auth->deny(['index', 'add', 'edit', 'delete']);
+// 		}
 	}
-	
-// 	public function beforeSave(Event $event){
-// 		Cake\ORM\Table::beforeSave(Event $event);
-// 		$user->password = $user->text;
-// 	}
-
 
 	public function index()
 	{
@@ -43,30 +43,15 @@ class UsersController extends AppController
 	
 	public function login() {
 		
-// 		if ($this->request->is('post')) {
-// 			$user = $this->Auth->identify();
-// 			if ($user) {
-// 				$this->Auth->setUser($user);
-// 				return $this->redirect($this->Auth->redirectUrl());
-// 			}
-// 			$this->Flash->error('Votre login ou mot de passe est incorrect.');
-// 		}
 		if ($this->request->is('post')) {
-			// $user = $this->Auth->identify(); // si on a une base de données
-			// si on n'a pas de base de données !!!
-			$username = $this->request->data['username'];
-			$password = $this->request->data['password'];
-				
-			if ($username == "test" && $password == "test") {
-				$user = new User();
-				$user->username = $username;
-				$user->password = $password;
-				$user->role = 'user'; // to change with model and DB
+			$user = $this->Auth->identify();
+			if ($user) {
 				$this->Auth->setUser($user);
 				return $this->redirect($this->Auth->redirectUrl());
 			}
-			$this->Flash->error(__('Invalid username or password, try again'));
+			$this->Flash->error('Votre login ou mot de passe est incorrect.');
 		}
+
 	}
 	
 	public function logout(){
@@ -76,6 +61,7 @@ class UsersController extends AppController
 
 	public function add() {
 		
+		// permet de stocker la correspondance numérique des chiffres au rôle en lettre (lui-même stocké dans une constante)
 		$roles[1] = ADMIN;
 		$roles[2] = USER;
 	
@@ -124,9 +110,10 @@ class UsersController extends AppController
 			}
 		}
 		
+		// permet de stocker la correspondance numérique des chiffres au rôle en lettre (lui-même stocké dans une constante)
 		$roles[1] = ADMIN;
 		$roles[2] = USER;
-		
+
 		$this->set(compact('user', 'roles'));
 		$this->set('_serialize', ['user']);
 	}

@@ -2,10 +2,10 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Auth\DefaultPasswordHasher;
 
 
-define('ADMIN', 'Administrateur');
-define('USER', 'Utilisateur');
+
 /**
  * User Entity
  *
@@ -67,8 +67,8 @@ class User extends Entity
     //Champ virtuel
     public $roleName;
     
-//     protected function _setPassword($value)
-//     {
-//     	return (new DefaultPasswordHasher)->hash($value);
-//     }
+    protected function _setPassword($value)
+    {
+    	return (new DefaultPasswordHasher)->hash($value);
+    }
 }

@@ -2,6 +2,7 @@
 namespace App\Model\BU;
 
 use Cake\ORM\TableRegistry;
+use Cake\I18n\Date;
 
 class PollManager
 {
@@ -20,6 +21,10 @@ class PollManager
     		} else {
     			$poll->musicGenreFullName = 'inconnu';
     		}
+    		
+    		$poll->beginformat = new date($poll->begindate);
+    		$poll->beginformat->format('d/M/YY');
+
     	}
     	
     	return $polls;

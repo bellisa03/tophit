@@ -25,7 +25,7 @@
 					
 					<div class="panel-body">
 						<h2 class="thin text-left">Nouveau Profil</h2>
-						<?= $this->Form->create($user) ?>
+						<?= $this->Form->create() ?>
 							
 						<div class="top-margin">
 							<?= $this->Form->input('login', ['label' => 'Nom d\'utilisateur'])?>						
@@ -45,8 +45,6 @@
 						</div>
 						<div class="top-margin">
 							<?= $this->Form->input('password', ['label' => 'Mot de passe'])?>
-							<br>
-							<?= $this->Form->button(__('Générer'), ['onclick'=>'generate()', 'class' => 'btn btn-default', 'type' => 'button'])?>
 						</div>
 						
 						<hr>
@@ -78,20 +76,4 @@
 
 		</div>
 	</div>	<!-- /container -->
-	<script type="text/javascript">
-	function randomPassword(length) {
-	    var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*-+<>ABCDEFGHIJKLMNOP1234567890";
-	    var pass = "";
-	    for (var x = 0; x < length; x++) {
-	        var i = Math.floor(Math.random() * chars.length);
-	        pass += chars.charAt(i);
-	    }
-	    return pass;
-	}
-
-	function generate() {
-	    password.value = randomPassword(8);
-	}
-</script>
-	
 	

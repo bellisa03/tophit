@@ -44,7 +44,7 @@
 						                <td><?= h($poll->title) ?></td>
 						                <td><?= h($poll->music_genre_name) ?></td>
 						                <td><?= h($poll->description) ?></td>
-						                <td><?= h($poll->begindate) ?></td>
+						                <td><?= h($poll->beginformat) ?></td>
 						                <td><?= h($poll->enddate) ?></td>
 						                <td><?= h($poll->status) ?></td>
 						                <td class="actions">
