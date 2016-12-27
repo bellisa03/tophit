@@ -29,4 +29,26 @@ class PollManager
     	
     	return $polls;
     }
+    
+    public static function getPoll($id = null){
+    	 
+    	$poll = TableRegistry::get('Polls')->get($id);
+    	 
+    	$serviceAgent = new MusicServiceAgent();
+    	 
+    	
+    	$musicGenre = $serviceAgent->getMusicGenre($poll->musicstyleid);
+    
+    	if ($musicGenre != null){
+    			$poll->musicGenreFullName = $musicGenre->getGenreID() . ' - ' . $musicGenre->getName();
+    	} else {
+    		$poll->musicGenreFullName = 'inconnu';
+    	}
+    
+    	$poll->beginformat = new date($poll->begindate);
+    	$poll->beginformat->format('d/M/YY');
+    
+    	
+    	return $poll;
+    }
 }

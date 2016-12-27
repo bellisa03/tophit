@@ -41,7 +41,7 @@
 						            <?php foreach ($polls as $poll): ?>
 						            <tr>
 						                <td><?= $this->Number->format($poll->id) ?></td>
-						                <td><?= h($poll->title) ?></td>
+						                <td><?= $this->Html->link(($poll->title), ['action' => 'view', $poll->id]) ?></td>
 						                <td><?= h($poll->music_genre_name) ?></td>
 						                <td><?= h($poll->description) ?></td>
 						                <td><?= h($poll->beginformat) ?></td>
@@ -50,6 +50,7 @@
 						                <td class="actions">
 						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?>
 						                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
+						                    <?= $this->Html->link(__('Voter'), ['controller'=> 'Votes','action' => 'add', $poll->id]) ?>
 						                </td>
 						            </tr>
 						            <?php endforeach; ?>
@@ -63,6 +64,7 @@
 				<li role="presentation"><?= $this->Html->link(__('Nouveau Sondage'), ['action' => 'add']) ?></li>
     		</ul>
 		</nav>
+		<p><?= __('Cliquez sur l\'intitulé du sondage pour consulter le détail de celui-ci') ?></p>
 				</div>
 				
 			</article>

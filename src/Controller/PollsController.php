@@ -21,6 +21,16 @@ class PollsController extends AppController
 		
 	}
 	
+	public function view($id = null) {
+		$poll = $this->Polls->get($id, [
+				'contain' => []
+		]);
+
+		$this->set(compact('poll', 'genres'));
+		$this->set('_serialize', ['poll']);
+		
+	}
+	
 	public function add(){
 		$serviceAgent = new MusicServiceAgent();
 		$genres = $serviceAgent->getMusicGenresList();
