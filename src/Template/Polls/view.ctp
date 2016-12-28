@@ -25,7 +25,7 @@
 					
 					<div class="panel-body">
 						<h3><?= __('Fiche détaillée du sondage') ?></h3>
-					    <table class="table table-striped">
+					    <table class="table">
 					        <tr>
 					            <th><?= __('Identifiant') ?></th>
 					            <td><?= $this->Number->format($poll->id) ?></td>
@@ -50,8 +50,38 @@
 					            <th><?= __('Fin') ?></th>
 					            <td><?= h($poll->enddate) ?></td>
 					        </tr>
+					        <tr>
+					            <th><?= __('Nombre de votes enregistrés') ?></th>
+					            <td><?= $this->Number->format($poll->id) ?></td>
+					        </tr>
+					        <tr>
+					            <th><?= __('Status') ?></th>
+					            <td><?= ($poll->status === 1)?'En cours':'Clotûré' ?></td>
+					        </tr>
 					    </table>
-    				</div>
+    				
+    				<table class="table table-striped">
+			        <thead>
+			            <tr>
+			                <th><?= $this->Paginator->sort('Titre') ?></th>
+			                <th><?= $this->Paginator->sort('Artiste') ?></th>
+			                <th><?= $this->Paginator->sort('Vote') ?></th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <?php foreach ($tracks as $track): ?>
+			            <?php /* @var $track  App\Model\Entity\MusicTrack */  ?>
+			            <tr>
+			                <td><?= h($track->trackTitle) ?></td>
+			                <td><?= h($track->artistName) ?></td>
+			                <td><?= __('Vote')?></td>
+			                
+			            </tr>
+			            <?php endforeach; ?>
+			        </tbody>
+			    </table>
+			    </div>
+			    
 		<nav role="navigation" style="padding-bottom: 30px">
 			<ul class="nav nav-pills">
 				<li role="presentation"><?= $this->Html->link(__('Index des sondages'), ['action' => 'index']) ?></li>

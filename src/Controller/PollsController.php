@@ -7,6 +7,7 @@ use Cake\Event\Event;
 use App\Model\BU\PollManager;
 use App\Model\BU\MusicServiceAgent;
 
+
 class PollsController extends AppController
 {
 	public function index() {
@@ -14,7 +15,8 @@ class PollsController extends AppController
 		//$polls = $this->Polls->find('all');
 		//$pollManager = (new PollManager())->getPolls();
 		
-		$polls = PollManager::getPolls();
+		$pollsToPaginate = PollManager::getPolls();
+		$polls = $this->paginate($pollsToPaginate);
 		
 		$this->set(compact('polls'));
 		$this->set('_serialize', ['polls']);
@@ -25,8 +27,12 @@ class PollsController extends AppController
 		$poll = $this->Polls->get($id, [
 				'contain' => []
 		]);
-
-		$this->set(compact('poll', 'genres'));
+		
+		$serviceAgent = new MusicServiceAgent();
+		$tracks = $serviceAgent->getMusicTracksList($poll->musicstyleid);
+		
+		
+		$this->set(compact('poll', 'tracks'));
 		$this->set('_serialize', ['poll']);
 		
 	}

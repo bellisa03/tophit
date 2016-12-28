@@ -71,5 +71,14 @@
 			<!-- /Article -->
 
 		</div>
+		
+		<div class="paginator">
+	        <ul class="pagination">
+	            <?= $this->Paginator->prev('< ' . __('précédent')) ?>
+	            <?= $this->Paginator->numbers() ?>
+	            <?= $this->Paginator->next(__('suivant') . ' >') ?>
+	        </ul>
+	        <p><?= $this->Paginator->counter() ?></p>
+    	</div>
 	</div>	<!-- /container -->
 	

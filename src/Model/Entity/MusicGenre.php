@@ -1,27 +1,44 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
-class MusicGenre extends Entity
+/**
+ * MusicGenre Entity
+ *
+ * @property int $GenreId
+ * @property string $Name
+ */
+class MusicGenre
 {
-	private $genreID;
+
+	private $genreId;
 	private $name;
-	
-	function getGenreID(){
-		return $this->genreID;
+
+	public function __construct($genreId, $name)
+	{
+		$this->genreId  = $genreId;
+		$this->name   = $name;
 	}
-	
-	function setGenreID($genreID){
-		$this->genreID = $genreID;
+
+	public function setGenreId($genreId)
+	{
+		$this->genreId= $genreId;
 	}
-	
-	function getName(){
+
+	public function getGenreId()
+	{
+		return $this->genreId;
+	}
+
+
+	public function setName($name)
+	{
+		$this->name= $name;
+	}
+
+	public function getName()
+	{
 		return $this->name;
 	}
-	
-	function setName($name){
-		$this->name = $name;
-	}
-	
+
+
 }

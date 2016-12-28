@@ -5,6 +5,8 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use App\Model\BU\PollManager;
+use App\Model\BU\MusicServiceAgent;
+use App\Model\Entity\MusicTrack;
 
 class VotesController extends AppController
 {
@@ -21,7 +23,23 @@ class VotesController extends AppController
 		
 		$poll = PollManager::getPoll($idPoll);
 		
-		$this->set(compact('poll'));
+// 		$vote = $this->Votes->patchEntity($vote, $this->request->data, [
+// 				'associated' => [
+// 						'Users',
+// 						'Polls',
+// 						'VoteTrack'
+// 				]
+// 		]);
+		
+		$serviceAgent = new MusicServiceAgent();
+		$musicTracks = $serviceAgent->getMusicTracksList($poll->musicstyleid);
+		
+		$tracks= [];
+		foreach ($musicTracks as $musicTrack){
+			$tracks[$musicTrack->trackID] = $musicTrack->artistName .' - '. $musicTrack->trackTitle;
+		}
+		
+		$this->set(compact('poll', 'tracks'));
 		$this->set('_serialize', ['poll']);
 		
 		
