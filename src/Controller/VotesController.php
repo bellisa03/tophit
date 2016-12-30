@@ -7,6 +7,7 @@ use Cake\Event\Event;
 use App\Model\BU\PollManager;
 use App\Model\BU\MusicServiceAgent;
 use App\Model\Entity\MusicTrack;
+use Cake\ORM\TableRegistry;
 
 class VotesController extends AppController
 {
@@ -43,6 +44,31 @@ class VotesController extends AppController
 		$this->set('_serialize', ['poll']);
 		
 		
+	}
+	
+	public function test(){
+// 		$votes = TableRegistry::get('Votes')->patchEntity($votes, $this->request->data, [
+// 				'associated' => [
+// 						'Users',
+// 						'Polls',
+// 						'VoteTracks'
+// 				]
+// 		]);
+		
+		//$votetracks = TableRegistry::get('VoteTracks')->find('all')->contain(['Votes']);
+		//$votetracks = TableRegistry::get('VoteTracks')->find('all')->contain(['Votes'])->andWhere('Votes.id_polls'== 2);
+		$votetracks = TableRegistry::get('VoteTracks')->find('all', [
+				'contain' => ['Votes'],
+				'conditions' => ['Votes.id_polls ='=> 1]
+				
+		]);
+
+		$manager = new PollManager();
+		$ranking = $manager->getVotesRanking(1, 2);
+		var_dump($ranking);
+		
+		$this->set(compact('votetracks', 'votes', 'ranking'));
+		$this->set('_serialize', ['votetracks']);
 	}
 
 	

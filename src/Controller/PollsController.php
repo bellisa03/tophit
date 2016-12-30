@@ -24,13 +24,13 @@ class PollsController extends AppController
 	}
 	
 	public function view($id = null) {
-		$poll = $this->Polls->get($id, [
-				'contain' => []
-		]);
+		$poll = PollManager::getPoll($id);
 		
-		$serviceAgent = new MusicServiceAgent();
-		$tracks = $serviceAgent->getMusicTracksList($poll->musicstyleid);
+// 		$serviceAgent = new MusicServiceAgent();
+// 		$tracks = $serviceAgent->getMusicTracksList($poll->musicstyleid);
 		
+		$manager = new PollManager();
+		$tracks = $manager->getVotesRanking($id, $poll->musicstyleid);
 		
 		$this->set(compact('poll', 'tracks'));
 		$this->set('_serialize', ['poll']);

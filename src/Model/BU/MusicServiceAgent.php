@@ -4,6 +4,7 @@ namespace App\Model\BU;
 use SoapClient;
 use App\Model\Entity\MusicGenre;
 use App\Model\Entity\MusicTrack;
+use Cake\ORM\TableRegistry;
 
 
 class MusicServiceAgent
@@ -88,5 +89,7 @@ class MusicServiceAgent
 		}
 		return $musicTracks;
 	}
+	
+	
 }
 

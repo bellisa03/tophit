@@ -26,4 +26,6 @@ class Vote extends Entity
         '*' => true,
         'id' => false
     ];
+    
+    
 }

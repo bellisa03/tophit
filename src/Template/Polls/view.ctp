@@ -52,7 +52,7 @@
 					        </tr>
 					        <tr>
 					            <th><?= __('Nombre de votes enregistrés') ?></th>
-					            <td><?= $this->Number->format($poll->id) ?></td>
+					            <td><?= $this->Number->format($poll->sumVotes) ?></td>
 					        </tr>
 					        <tr>
 					            <th><?= __('Status') ?></th>
@@ -63,18 +63,22 @@
     				<table class="table table-striped">
 			        <thead>
 			            <tr>
+			            	<th><?= $this->Paginator->sort('Classement') ?></th>
 			                <th><?= $this->Paginator->sort('Titre') ?></th>
 			                <th><?= $this->Paginator->sort('Artiste') ?></th>
-			                <th><?= $this->Paginator->sort('Vote') ?></th>
+			                <th><?= $this->Paginator->sort('Points') ?></th>
 			            </tr>
 			        </thead>
 			        <tbody>
+			        	<?php $i =0; ?>
 			            <?php foreach ($tracks as $track): ?>
+			            <?php $i ++; ?>
 			            <?php /* @var $track  App\Model\Entity\MusicTrack */  ?>
 			            <tr>
+			            	<td><?= $this->Number->format($i) ?></td>
 			                <td><?= h($track->trackTitle) ?></td>
 			                <td><?= h($track->artistName) ?></td>
-			                <td><?= __('Vote')?></td>
+			                <td><?=$this->Number->format($track->ranking)?></td>
 			                
 			            </tr>
 			            <?php endforeach; ?>

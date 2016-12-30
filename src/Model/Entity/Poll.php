@@ -33,6 +33,7 @@ class Poll extends Entity
     ];
     
     public $musicGenreFullName;
+    public $sumVotes;
     
     // ici fonction pour un track spécifique. l'attribut virtuel qui pourra ensuite être utilisé est $poll->music_genre_name
     public function _getMusicGenreName(){

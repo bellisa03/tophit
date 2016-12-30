@@ -11,4 +11,5 @@ class MusicTrack extends Entity
 	public $milliseconds;
 	public $trackID;
 	public $trackTitle;
+	public $ranking;
 }
