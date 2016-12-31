@@ -40,6 +40,8 @@ class VotesController extends AppController
 			$tracks[$musicTrack->trackID] = $musicTrack->artistName .' - '. $musicTrack->trackTitle;
 		}
 		
+		
+		
 		$this->set(compact('poll', 'tracks'));
 		$this->set('_serialize', ['poll']);
 		
@@ -55,20 +57,39 @@ class VotesController extends AppController
 // 				]
 // 		]);
 		
-		//$votetracks = TableRegistry::get('VoteTracks')->find('all')->contain(['Votes']);
-		//$votetracks = TableRegistry::get('VoteTracks')->find('all')->contain(['Votes'])->andWhere('Votes.id_polls'== 2);
-		$votetracks = TableRegistry::get('VoteTracks')->find('all', [
+		$vote_tracks = TableRegistry::get('VoteTracks')->find('all', [
 				'contain' => ['Votes'],
 				'conditions' => ['Votes.id_polls ='=> 1]
 				
 		]);
 
 		$manager = new PollManager();
-		$ranking = $manager->getVotesRanking(1, 2);
-		var_dump($ranking);
+		$tracks = $manager->getListToVote(1, 2);
 		
-		$this->set(compact('votetracks', 'votes', 'ranking'));
-		$this->set('_serialize', ['votetracks']);
+		$votes = TableRegistry::get('Votes');
+		$vote = $votes->newEntity($this->request->data(), [
+				'associated' => [
+						'VoteTracks'
+				]
+		]);
+		
+		
+		//if ($this->request->is('post')) {
+			$user = $this->Auth->user();
+			$vote->id_users = $user['id'];
+			$vote->id_polls = 1;
+			$vote->vote_tracks->trackid = 5;
+			$vote->vote_tracks->trackorder = 1;
+			if ($votes->save($vote,['associated' => ['VoteTracks']])) {
+				return $this->redirect(['controller'=>'polls','action' => 'index']);
+			} else {
+				$this->Flash->error(__('Le vote n\'a pu être sauvegardé. Veuillez essayer à nouveau.'));
+			}
+		//}
+		
+		
+		$this->set(compact('vote_tracks', 'votes', 'vote', 'tracks'));
+		$this->set('_serialize', ['vote_tracks']);
 	}
 
 	

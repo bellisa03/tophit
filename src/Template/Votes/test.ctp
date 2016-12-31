@@ -13,30 +13,30 @@
 			<li class="active"><?= __('Vote') ?></li>
 		</ol>
 		
-		<div class="row">
-			
-			<table class="table table-striped">
-						        <thead>
-						            <tr>
-						                <th><?= $this->Paginator->sort('Id') ?></th>
-						                <th><?= $this->Paginator->sort('idpolls') ?></th>
-						                <th><?= $this->Paginator->sort('trackorder') ?></th>
-						                <th><?= $this->Paginator->sort('trackid') ?></th>
-						                
-						            </tr>
-						        </thead>
-						        <tbody>
-			<?php foreach ($votetracks as $votetrack): ?>
-						            <tr>
-						                <td><?= $this->Number->format($votetrack->vote->id) ?></td>
-										<td><?= $this->Number->format($votetrack->vote->id_polls) ?></td>
-						                <td><?= $this->Number->format($votetrack->trackorder) ?></td>
-						                
-						                <td><?= $this->Number->format($votetrack->trackid) ?></td>
-						                
-						                
-						            </tr>
-						            <?php endforeach; ?>
-
-		</div>
+		<?= $this->Form->create() ?>
+						<div class="top-margin" style="font-weight: bold; color: #777;">
+							
+							<?= __('Titre que vous placez en 1ère position:')?>
+							<?= $this->Form->select('vote_tracks.1.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->input('vote_tracks.1.trackorder', ['value' => 1, 'type' => 'hidden'])?>
+							<?= __('Titre que vous placez en 2ème position:')?>
+							<?= $this->Form->select('vote_tracks.2.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->input('vote_tracks.2.trackorder', ['value' => 2, 'type' => 'hidden'])?>
+							<?= __('Titre que vous placez en 3ème position:')?>
+							<?= $this->Form->select('vote_tracks.3.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->input('vote_tracks.3.trackorder', ['value' => 3, 'type' => 'hidden'])?>
+							<?= __('Titre que vous placez en 4ème position:')?>
+							<?= $this->Form->select('vote_tracks.4.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->input('vote_tracks.4.trackorder', ['value' => 4, 'type' => 'hidden'])?>
+							<?= __('Titre que vous placez en 5ème position:')?>
+							<?= $this->Form->select('vote_tracks.5.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->input('vote_tracks.5.trackorder', ['value' => 5, 'type' => 'hidden'])?>
+							
+						</div>
+						<?= $this->Form->end() ?>
+						<br>
+						<div class="col-lg-12 text-right">
+							<?= $this->Form->button(__('Valider'), ['class' => 'btn btn-action', 'style' => 'background: #6a6aa5; color: white'])?>
+						</div>
+    					<?= $this->Form->end() ?>
 	</div>	<!-- /container -->

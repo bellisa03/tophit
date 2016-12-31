@@ -67,6 +67,26 @@ class PollManager
     	return $poll;
     }
     
+    /*
+     * Fonction qui permet de faire un tri sur un tableau d'objet indicé.
+     * Prend en paramètre le tableau et la propriété de l'objet sur laquelle le tri va être fait.
+     * retourne via la fonction array_multisort le tableau trié par ordre descendant.
+     */
+    public static function sortArrayOfArray(&$array, $subfield)
+    {
+    	$sortarray = array();
+    	foreach ($array as $key => $row)
+    	{
+   			$sortarray[$key] = $row->$subfield;   		
+    	}
+    	return array_multisort($sortarray, SORT_DESC, $array);
+
+    }
+    
+    /*
+     * Fonction qui retourne la liste des titres d'un sondage particulier triés en fonction d'une pondération des votes sous forme de tableau.
+     * Prend en paramètre l'id du sondage et de la catégorie.
+     */
     public function getVotesRanking($pollId, $pollmusicstyleid){
     	
     	$votetracks = TableRegistry::get('VoteTracks')->find('all', [
@@ -90,7 +110,27 @@ class PollManager
     				}	
     			}
     		}
-    	}
+		}
+    	PollManager::sortArrayOfArray($musicTracks, 'ranking');
+		
     	return $musicTracks;
+    }
+    
+    public function getListToVote($pollId, $pollmusicstyleid){
+    	 
+    	$votetracks = TableRegistry::get('VoteTracks')->find('all', [
+    			'contain' => ['Votes'],
+    			'conditions' => ['Votes.id_polls ='=> $pollId]
+    	]);
+    	 
+    	$musicAgent = new MusicServiceAgent();
+    	$musicTracks = $musicAgent->getMusicTracksList($pollmusicstyleid);
+    	
+    	$tracks= [];
+    	foreach ($musicTracks as $musicTrack){
+    		$tracks[$musicTrack->trackID] = $musicTrack->artistName .' - '. $musicTrack->trackTitle;
+    	}
+    	
+    	return $tracks;
     }
 }

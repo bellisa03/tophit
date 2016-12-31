@@ -70,10 +70,13 @@
 			            </tr>
 			        </thead>
 			        <tbody>
-			        	<?php $i =0; ?>
+			        	<?php $i =1; ?>
+			        	<?php $temp = null; ?>
 			            <?php foreach ($tracks as $track): ?>
-			            <?php $i ++; ?>
 			            <?php /* @var $track  App\Model\Entity\MusicTrack */  ?>
+			            <?php if($temp != null && $temp > $track->ranking)$i ++;?>
+			            <?php $temp = $track->ranking;?>
+			            
 			            <tr>
 			            	<td><?= $this->Number->format($i) ?></td>
 			                <td><?= h($track->trackTitle) ?></td>
