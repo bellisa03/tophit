@@ -57,24 +57,15 @@
 					    <h2 class="thin text-left">Vote</h2>
 					    <p>Sélectionnez les titres de votre choix par ordre de préférence dans les différents menus déroulants.</p>
 					    
-						<?= $this->Form->create($vote) ?>
+						<?= $this->Form->create() ?>
 						<div class="top-margin" style="font-weight: bold; color: #777;">
 							
 							<?= __('Titre que vous placez en 1ère position:')?>
-							<?= $this->Form->select('vote_track.0.trackid', $tracks, ['empty' => '(choisissez)'])?>
-							<?= $this->Form->input('vote_track.0.trackorder', ['value' => 1, 'type' => 'hidden'])?>
-							<?= __('Titre que vous placez en 2ème position:')?>
-							<?= $this->Form->select('vote_track.1.trackid', $tracks, ['empty' => '(choisissez)'])?>
-							<?= $this->Form->input('vote_track.1.trackorder', ['value' => 2, 'type' => 'hidden'])?>
-							<?= __('Titre que vous placez en 3ème position:')?>
-							<?= $this->Form->select('vote_track.2.trackid', $tracks, ['empty' => '(choisissez)'])?>
-							<?= $this->Form->input('vote_track.2.trackorder', ['value' => 3, 'type' => 'hidden'])?>
-							<?= __('Titre que vous placez en 4ème position:')?>
-							<?= $this->Form->select('vote_track.3.trackid', $tracks, ['empty' => '(choisissez)'])?>
-							<?= $this->Form->input('vote_track.3.trackorder', ['value' => 4, 'type' => 'hidden'])?>
-							<?= __('Titre que vous placez en 5ème position:')?>
-							<?= $this->Form->select('vote_track.4.trackid', $tracks, ['empty' => '(choisissez)'])?>
-							<?= $this->Form->input('vote_track.4.trackorder', ['value' => 5, 'type' => 'hidden'])?>
+							
+							<?= $this->Form->select('trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->input('trackorder', ['value' => 1, 'type' => 'hidden'])?>
+							<?= $this->Form->input('vote.id_polls', ['value' => 1, 'type' => 'hidden'])?>
+							<?= $this->Form->input('vote.id_users', ['value' => 7, 'type' => 'hidden'])?>
 							
 						</div>
 						<?= $this->Form->end() ?>

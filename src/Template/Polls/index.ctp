@@ -48,9 +48,13 @@
 						                <td><?= h($poll->enddate) ?></td>
 						                <td><?= h($poll->status) ?></td>
 						                <td class="actions">
+						                <?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
 						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?>
 						                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
+						                <?php }?>
+						                <?php if (isset($connectedUser) && $connectedUser['role'] == 2) {?>
 						                    <?= $this->Html->link(__('Voter'), ['controller'=> 'Votes','action' => 'add', $poll->id]) ?>
+						                <?php }?>
 						                </td>
 						            </tr>
 						            <?php endforeach; ?>

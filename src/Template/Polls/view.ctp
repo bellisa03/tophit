@@ -92,7 +92,14 @@
 		<nav role="navigation" style="padding-bottom: 30px">
 			<ul class="nav nav-pills">
 				<li role="presentation"><?= $this->Html->link(__('Index des sondages'), ['action' => 'index']) ?></li>
-				<li role="presentation"><?= $this->Html->link(__('Voter pour ce sondage'), ['controller'=> 'Votes','action' => 'add', $poll->id]) ?></li>
+					<?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
+                <li role="presentation"><?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?></li>
+                <li role="presentation"><?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?></li>
+                	<?php }?>
+					<?php if (isset($connectedUser) && $connectedUser['role'] == 2) {?>
+                <li role="presentation"><?= $this->Html->link(__('Voter pour ce sondage'), ['controller'=> 'Votes','action' => 'add', $poll->id]) ?></li>
+                	<?php }?>
+				
     		</ul>
 		</nav>
 				</div>

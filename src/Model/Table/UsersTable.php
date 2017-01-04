@@ -69,7 +69,10 @@ class UsersTable extends Table
         $validator
             ->integer('role')
             ->requirePresence('role', 'create')
-            ->notEmpty('role');
+            ->notEmpty('role')
+        	->add('role', 'inList', [
+        			'rule' => ['inList', [1,2]]
+        	]);
 
         $validator
             ->allowEmpty('firstname');

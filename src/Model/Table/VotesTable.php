@@ -34,24 +34,29 @@ class VotesTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
         
-        $this->belongsTo('Users', [
-        		'foreignKey' => 'id_users',
-        		'bindingKey' => 'id'
-        ]);
+//         $this->belongsTo('Users', [
+//         		'foreignKey' => 'id_users',
+//         		'bindingKey' => 'id'
+//         ]);
         
-        $this->belongsTo('Polls', [
-        		'foreignKey' => 'id_polls',
-        		'bindingKey' => 'id'
-        ]);
+//         $this->belongsTo('Polls', [
+//         		'foreignKey' => 'id_polls',
+//         		'bindingKey' => 'id'
+//         ]);
         
+//         $this->hasMany('VoteTracks', [
+//         		'foreignKey' => 'id',
+//         		'bindingKey' => [
+//         				'id_users',
+//         				'id_polls'
+//         		]
+//         ]);
         $this->hasMany('VoteTracks', [
-        		'foreignKey' => 'id',
-        		'bindingKey' => [
-        				'id_users',
-        				'id_polls'
-        		]
+        		'foreignKey' => 'id_votes',
+        		'bindingKey' => 'id',
+        		'propertyName' => 'vote_track'
+        		
         ]);
-        
     }
 
     /**

@@ -10,6 +10,18 @@ use App\Model\BU\MusicServiceAgent;
 
 class PollsController extends AppController
 {
+
+	public function beforeFilter(Event $event){
+	
+		$this->Auth->allow(['index', 'view']);
+	
+		if ($this->Auth->user() != null){
+			$connectedUser = $this->Auth->user();
+			$this->set('connectedUser', $connectedUser);
+				
+		}
+	}
+	
 	public function index() {
 
 		//$polls = $this->Polls->find('all');
@@ -119,14 +131,4 @@ class PollsController extends AppController
 	}
 	
 	
-	public function beforeFilter(Event $event){
-
-		$this->Auth->allow(['index']);
-
-		if ($this->Auth->user() != null){
-			$connectedUser = $this->Auth->user();
-			$this->set('connectedUser', $connectedUser);
-			
-		}
-	}
 }
