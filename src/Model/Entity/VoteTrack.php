@@ -25,7 +25,6 @@ class VoteTrack extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
-    	'vote' => true
+        'id' => false
     ];
 }

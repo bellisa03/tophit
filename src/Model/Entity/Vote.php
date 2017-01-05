@@ -25,7 +25,7 @@ class Vote extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false,
-    	'vote_tracks' => true
+    	'vote_track' => true
     ];
     
     

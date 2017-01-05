@@ -63,7 +63,6 @@ class PollManager
     	$poll->beginformat = new date($poll->begindate);
     	$poll->beginformat->format('d/M/YY');
     
-    	
     	return $poll;
     }
     

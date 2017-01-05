@@ -43,14 +43,7 @@ class VotesTable extends Table
 //         		'foreignKey' => 'id_polls',
 //         		'bindingKey' => 'id'
 //         ]);
-        
-//         $this->hasMany('VoteTracks', [
-//         		'foreignKey' => 'id',
-//         		'bindingKey' => [
-//         				'id_users',
-//         				'id_polls'
-//         		]
-//         ]);
+ 
         $this->hasMany('VoteTracks', [
         		'foreignKey' => 'id_votes',
         		'bindingKey' => 'id',

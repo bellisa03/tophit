@@ -63,11 +63,13 @@
 
 						</div>
 					</div>
+		<?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
 		<nav role="navigation" style="padding-bottom: 30px">
 			<ul class="nav nav-pills">
 				<li role="presentation"><?= $this->Html->link(__('Nouveau Sondage'), ['action' => 'add']) ?></li>
     		</ul>
 		</nav>
+		 <?php }?>
 		<p><?= __('Cliquez sur l\'intitulé du sondage pour consulter le détail de celui-ci') ?></p>
 				</div>
 				
