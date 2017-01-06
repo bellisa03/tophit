@@ -10,6 +10,11 @@
 		<ol class="breadcrumb">
 			<li><?= $this->Html->link(__('Accueil'), ['controller' => 'Home', 'action' => 'index']) ?></li>
 			<li><?= $this->Html->link(__('Sondages'), ['controller' => 'Polls', 'action' => 'index']) ?></li>
+				<?php if ($poll->status === 1) {?>
+			<li><?= $this->Html->link(__('En cours'), ['controller' => 'Polls', 'action' => 'index']) ?></li>
+				<?php } else {?>
+			<li><?= $this->Html->link(__('Clôturés'), ['controller' => 'Polls', 'action' => 'archive']) ?></li>	
+				<?php }?>
 			<li class="active"><?= __('Fiche détaillée') ?></li>
 		</ol>
 		
@@ -44,11 +49,11 @@
 					        </tr>
 					        <tr>
 					            <th><?= __('Début') ?></th>
-					            <td><?= h($poll->begindate) ?></td>
+					            <td><?= ($poll->begindate)? h($formattedDates[$poll->id]['begindate']): 'null' ?></td>
 					        </tr>
 					        <tr>
 					            <th><?= __('Fin') ?></th>
-					            <td><?= h($poll->enddate) ?></td>
+					            <td><?= ($poll->enddate)? h($formattedDates[$poll->id]['enddate']): 'null' ?></td>
 					        </tr>
 					        <tr>
 					            <th><?= __('Nombre de votes enregistrés') ?></th>
@@ -56,7 +61,7 @@
 					        </tr>
 					        <tr>
 					            <th><?= __('Status') ?></th>
-					            <td><?= ($poll->status === 1)?'En cours':'Clotûré' ?></td>
+					            <td><?= ($poll->status === 1)?__('En cours'):__('Clôturé') ?></td>
 					        </tr>
 					    </table>
     				
@@ -91,7 +96,11 @@
 			    
 		<nav role="navigation" style="padding-bottom: 30px">
 			<ul class="nav nav-pills">
-				<li role="presentation"><?= $this->Html->link(__('Index des sondages'), ['action' => 'index']) ?></li>
+					<?php if ($poll->status === 1) {?>
+				<li role="presentation"><?= $this->Html->link(__('Index des sondages en cours'), ['action' => 'index']) ?></li>
+					<?php } else {?>
+				<li role="presentation"><?= $this->Html->link(__('Index des sondages clôturés'), ['action' => 'archive']) ?></li>
+					<?php }?>
 					<?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
                 <li role="presentation"><?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?></li>
                 <li role="presentation"><?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?></li>

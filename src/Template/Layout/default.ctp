@@ -29,7 +29,7 @@
 
 <body class="home">
 	<!-- Fixed navbar -->
-	<div class="navbar navbar-inverse navbar-fixed-top headroom">
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" style= "background-color: #1e1e4a">
 		<div class="container">
 			<div class="navbar-header" style="background-color: #6a6aa5">
 				<!-- Button for smallest screens -->
@@ -41,11 +41,13 @@
 		</div>
 	</div> 
 	<!-- /.navbar -->
+	<div>
+	
 	
 	<?= $this->fetch('content') ?>
-	
 	<?= $this->Flash->render() ?>
 	<?= $this->Flash->render('auth') ?>
+	
 	<footer id="footer" class="top-space">
 
 		<div class="footer1" style="background-color: #1e1e4a">

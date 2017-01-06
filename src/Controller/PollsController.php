@@ -13,7 +13,7 @@ class PollsController extends AppController
 
 	public function beforeFilter(Event $event){
 	
-		$this->Auth->allow(['index', 'view']);
+		$this->Auth->allow(['index', 'view', 'archive']);
 	
 		if ($this->Auth->user() != null){
 			$connectedUser = $this->Auth->user();
@@ -23,28 +23,44 @@ class PollsController extends AppController
 	}
 	
 	public function index() {
-
-		//$polls = $this->Polls->find('all');
-		//$pollManager = (new PollManager())->getPolls();
 		
-		$pollsToPaginate = PollManager::getPolls();
-		$polls = $this->paginate($pollsToPaginate);
+		$pollsActive = PollManager::getPolls()->find('all', [
+				'conditions' => ['status ='=> 1]
+		]);
 		
-		$this->set(compact('polls'));
+		$polls = $this->paginate($pollsActive);
+		
+		$formattedDates = PollManager::getPollsFormattedDates();
+		
+		$this->set(compact('polls', 'formattedDates'));
 		$this->set('_serialize', ['polls']);
 		
 	}
 	
+	public function archive() {
+	
+		$pollsInactive = PollManager::getPolls()->find('all', [
+				'conditions' => ['status ='=> 2]
+		]);
+	
+		$polls = $this->paginate($pollsInactive);
+	
+		$formattedDates = PollManager::getPollsFormattedDates();
+	
+		$this->set(compact('polls', 'formattedDates'));
+		$this->set('_serialize', ['polls']);
+	
+	}
+	
 	public function view($id = null) {
 		$poll = PollManager::getPoll($id);
-		
-// 		$serviceAgent = new MusicServiceAgent();
-// 		$tracks = $serviceAgent->getMusicTracksList($poll->musicstyleid);
-		
+			
 		$manager = new PollManager();
 		$tracks = $manager->getVotesRanking($id, $poll->musicstyleid);
+		$formattedDates = $manager->getPollFormattedDates($id);
 		
-		$this->set(compact('poll', 'tracks'));
+		
+		$this->set(compact('poll', 'tracks', 'formattedDates'));
 		$this->set('_serialize', ['poll']);
 		
 	}

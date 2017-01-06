@@ -10,6 +10,7 @@
 		<ol class="breadcrumb">
 			<li><?= $this->Html->link(__('Accueil'), ['controller' => 'Home', 'action' => 'index']) ?></li>
 			<li><?= $this->Html->link(__('Sondages'), ['controller' => 'Polls', 'action' => 'index']) ?></li>
+			<li><?= $this->Html->link(__('En cours'), ['controller' => 'Polls', 'action' => 'index']) ?></li>
 			<li class="active"><?= __('Vote') ?></li>
 		</ol>
 		
@@ -37,11 +38,11 @@
 					        </tr>
 					        <tr>
 					            <th><?= __('Début') ?></th>
-					            <td><?= h($poll->begindate) ?></td>
+					            <td><?= ($poll->begindate)? h($formattedDates[$poll->id]['begindate']): 'null' ?></td>
 					        </tr>
 					        <tr>
 					            <th><?= __('Fin') ?></th>
-					            <td><?= h($poll->enddate) ?></td>
+					            <td><?= ($poll->enddate)? h($formattedDates[$poll->id]['enddate']): 'null' ?></td>
 					        </tr>
 					        <tr>
 					            <th><?= __('Nombre de votes enregistrés') ?></th>

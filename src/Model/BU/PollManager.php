@@ -16,20 +16,48 @@ class PollManager
     	foreach ($polls as $poll){
     		$musicGenre = $serviceAgent->getMusicGenre($poll->musicstyleid);
     		
-    		if ($musicGenre != null){
-    			$poll->musicGenreFullName = $musicGenre->getGenreID() . ' - ' . $musicGenre->getName();
-    		} else {
-    			$poll->musicGenreFullName = 'inconnu';
-    		}
     		
-    		$poll->beginformat = new date($poll->begindate);
-    		$poll->beginformat->format('d/M/YY');
-
     	}
-    	
     	return $polls;
     }
     
+    /*
+     * Fonction qui retourne un tableau de dates formatées en français dans la variable formattedDates.
+     * Valable pour toute la table de sondage.
+     * Cette dernière peut ensuite être passée à la vue pour l'affichage.
+     */
+    public static function getPollsFormattedDates(){
+    	$polls = TableRegistry::get('Polls')->find();
+    	
+    	foreach ($polls as $poll){
+    		$temp = new date($poll->begindate);
+    		$newTemp = $temp->format('d/m/Y');
+    		$formattedDates[$poll->id]['begindate'] = $newTemp;
+    		$temp = new date($poll->enddate);
+    		$newTemp = $temp->format('d/m/Y');
+    		$formattedDates[$poll->id]['enddate'] = $newTemp;
+    		
+    	}
+    	return $formattedDates;
+    }
+    
+    /*
+     * Fonction qui retourne un tableau de dates formatées en français dans la variable formattedDates.
+     * Valable pour un sondage en particulier (prend en paramètre son id).
+     * Cette dernière peut ensuite être passée à la vue pour l'affichage.
+     */
+    public static function getPollFormattedDates($id = null){
+    	$poll = TableRegistry::get('Polls')->get($id);
+    	 
+    	$temp = new date($poll->begindate);
+    	$newTemp = $temp->format('d/m/Y');
+    	$formattedDates[$poll->id]['begindate'] = $newTemp;
+    	$temp = new date($poll->enddate);
+    	$newTemp = $temp->format('d/m/Y');
+    	$formattedDates[$poll->id]['enddate'] = $newTemp;
+    
+    	return $formattedDates;
+    }
     /*
      * Fonction qui retourne un sondage en particulier.
      * Grâce à des propriétés virtuelles, elle retourne:
@@ -44,12 +72,6 @@ class PollManager
     	$serviceAgent = new MusicServiceAgent();    	
     	$musicGenre = $serviceAgent->getMusicGenre($poll->musicstyleid);
     
-    	if ($musicGenre != null){
-    			$poll->musicGenreFullName = $musicGenre->getGenreID() . ' - ' . $musicGenre->getName();
-    	} else {
-    		$poll->musicGenreFullName = 'inconnu';
-    	}
-    
     	$votes = TableRegistry::get('Votes')->find();
     	$poll->sumVotes = 0;
     	if($votes != null){
@@ -60,9 +82,6 @@ class PollManager
     		}
     	}
     	
-    	$poll->beginformat = new date($poll->begindate);
-    	$poll->beginformat->format('d/M/YY');
-    
     	return $poll;
     }
     

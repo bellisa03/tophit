@@ -41,7 +41,7 @@
 						
 								<div class="row">
 									<div class="col-lg-8">
-										<b><a href="">Problème de connexion</a></b>
+										<b><?= $this->Html->link(__('Problème de connexion'), ['action' => 'contact']) ?></b>
 									</div>
 									<div class="col-lg-4 text-right">
 										<?= $this->Form->button(__('Connexion'), ['class' => 'btn btn-action', 'style' => 'background: #1e1e4a;'])?>

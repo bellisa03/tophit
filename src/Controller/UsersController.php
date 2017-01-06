@@ -5,14 +5,16 @@ namespace App\Controller;
 use App\Model\Entity\User;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
-
+use Cake\Mailer\Email;
+use Cake\Mailer\MailerAwareTrait;
+use App\Model\BU\UserManager;
 
 class UsersController extends AppController
 {
-
+	use MailerAwareTrait;
 	public function initialize(){
 		parent::initialize();
-		$this->Auth->allow(['logout']);
+		$this->Auth->allow(['logout', 'contact']);
 	}
 	
 
@@ -36,7 +38,9 @@ class UsersController extends AppController
 	{
 		$users = $this->paginate($this->Users);
 		
-		$this->set(compact('users'));
+		$formattedDates = UserManager::getUsersFormattedDates();
+		
+		$this->set(compact('users', 'formattedDates'));
 		$this->set('_serialize', ['users']);
 	}
 	
@@ -128,6 +132,12 @@ class UsersController extends AppController
 			$this->Flash->error(__('L\'utilisateur n\'a pu être supprimé. Veuillez essayer à nouveau.'));
 		}
 		return $this->redirect(['action' => 'index']);
+	}
+	
+	public function contact(){
+		
+		$this->getMailer('User')->send('contact');
+		//Email::deliver('isabelle.kinet79@gmail.com', 'Problème de connexion TopH.it', 'Message', ['from' => 'isabelle_kinet@yahoo.com']);
 	}
 	
 }

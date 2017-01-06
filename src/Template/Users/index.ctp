@@ -47,8 +47,8 @@
 						                <td><?= h($user->lastname) ?></td>
 						                <td><?= h($user->email) ?></td>
 						                <td><?= h($user->role_name) ?></td>
-						                <td><?= h($user->created) ?></td>
-						                <td><?= h($user->modified) ?></td>
+						                <td><?= ($user->created)? h($formattedDates[$user->id]['created']): 'null' ?></td>
+						                <td><?= ($user->modified)? h($formattedDates[$user->id]['modified']): 'null' ?></td>
 						                <td class="actions">
 						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $user->id]) ?>
 						                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $user->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer l\'utilisateur # {0}?', $user->id)]) ?>

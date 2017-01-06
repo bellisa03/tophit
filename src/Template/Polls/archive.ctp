@@ -10,7 +10,7 @@
 		<ol class="breadcrumb">
 			<li><?= $this->Html->link(__('Accueil'), ['controller' => 'Home', 'action' => 'index']) ?></li>
 			<li><?= $this->Html->link(__('Sondages'), ['controller' => 'Polls', 'action' => 'index']) ?></li>
-			<li class="active"><?= __('En cours') ?></li>
+			<li class="active"><?= __('Clôturés') ?></li>
 		</ol>
 		
 		<div class="row">
@@ -33,7 +33,7 @@
 						                <th><?= $this->Paginator->sort('Description') ?></th>
 						                <th><?= $this->Paginator->sort('Début') ?></th>
 						                <th><?= $this->Paginator->sort('Fin') ?></th>
-						                <?php if (isset($connectedUser)) {?>
+						                <?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
 						                <th class="actions"><?= __('Actions') ?></th>
 						                <?php }?>
 						            </tr>
@@ -47,15 +47,10 @@
 						                <td><?= h($poll->description) ?></td>
 						                <td><?= ($poll->begindate)? h($formattedDates[$poll->id]['begindate']): 'null'?></td>
 						                <td><?= ($poll->enddate)? h($formattedDates[$poll->id]['enddate']): 'null' ?></td>
-						                <?php if (isset($connectedUser)) {?>
+						                <?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
 						                <td class="actions">
-						                <?php if ($connectedUser['role'] == 1) {?>
 						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?>
 						                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
-						                <?php }?>
-						                <?php if ($connectedUser['role'] == 2) {?>
-						                    <?= $this->Html->link(__('Voter'), ['controller'=> 'Votes','action' => 'add', $poll->id]) ?>
-						                <?php }?>
 						                </td>
 						                <?php }?>
 						            </tr>
@@ -65,14 +60,16 @@
 
 						</div>
 					</div>
+		
 		<nav role="navigation" style="padding-bottom: 30px">
 			<ul class="nav nav-pills">
 			<?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
 				<li role="presentation"><?= $this->Html->link(__('Nouveau Sondage'), ['action' => 'add']) ?></li>
 			<?php }?>
-				<li role="presentation"><?= $this->Html->link(__('Liste des sondages clôturés'), ['action' => 'archive']) ?></li>
+				<li role="presentation"><?= $this->Html->link(__('Liste des sondages en cours'), ['action' => 'index']) ?></li>
     		</ul>
 		</nav>
+		 
 		<p><?= __('Cliquez sur l\'intitulé du sondage pour consulter le détail de celui-ci') ?></p>
 				</div>
 				
