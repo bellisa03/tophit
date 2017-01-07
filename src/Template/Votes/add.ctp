@@ -46,7 +46,7 @@
 					        </tr>
 					        <tr>
 					            <th><?= __('Nombre de votes enregistrés') ?></th>
-					            <td><?= $this->Number->format($poll->id) ?></td>
+					            <td><?= $this->Number->format($poll->sumVotes) ?></td>
 					        </tr>
 					        <tr>
 					            <th><?= __('Status') ?></th>

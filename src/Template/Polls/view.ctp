@@ -68,22 +68,28 @@
     				<table class="table table-striped">
 			        <thead>
 			            <tr>
+			            <?php if($poll->sumVote != 0){?>
 			            	<th><?= $this->Paginator->sort('Classement') ?></th>
+			            <?php }?>
 			                <th><?= $this->Paginator->sort('Titre') ?></th>
 			                <th><?= $this->Paginator->sort('Artiste') ?></th>
 			                <th><?= $this->Paginator->sort('Points') ?></th>
 			            </tr>
 			        </thead>
 			        <tbody>
-			        	<?php $i =1; ?>
-			        	<?php $temp = null; ?>
-			            <?php foreach ($tracks as $track): ?>
-			            <?php /* @var $track  App\Model\Entity\MusicTrack */  ?>
-			            <?php if($temp != null && $temp > $track->ranking)$i ++;?>
-			            <?php $temp = $track->ranking;?>
-			            
+			        <!-- $i = compteur de la colonne classement. $temp permet de comparer les écarts de points entre les titres.
+			        le $i n'augmente que s'il y a un écart -->
+			        <?php $i =1; ?>
+			        <?php $temp = null; ?>
+			        <?php foreach ($tracks as $track): ?>
+			        	<!-- "if" déterminant si il faut ou non afficher le classement. La colonne classement ne s'affichera que si des votes sont déjà comptabilisés. -->
+			            <?php if($poll->sumVote != 0):?>
+			            	<?php /* @var $track  App\Model\Entity\MusicTrack */  ?>
+			            	<?php if($temp != null && $temp > $track->ranking)$i ++;?>
+			            	<?php $temp = $track->ranking;?>
 			            <tr>
 			            	<td><?= $this->Number->format($i) ?></td>
+			           <?php endif;?>
 			                <td><?= h($track->trackTitle) ?></td>
 			                <td><?= h($track->artistName) ?></td>
 			                <td><?=$this->Number->format($track->ranking)?></td>
@@ -105,7 +111,7 @@
                 <li role="presentation"><?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?></li>
                 <li role="presentation"><?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?></li>
                 	<?php }?>
-					<?php if (isset($connectedUser) && $connectedUser['role'] == 2) {?>
+					<?php if (isset($connectedUser) && $connectedUser['role'] == 2 && $okToVote) {?>
                 <li role="presentation"><?= $this->Html->link(__('Voter pour ce sondage'), ['controller'=> 'Votes','action' => 'add', $poll->id]) ?></li>
                 	<?php }?>
 				

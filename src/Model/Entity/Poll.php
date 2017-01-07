@@ -32,10 +32,9 @@ class Poll extends Entity
         'id' => false
     ];
     
-    public $musicGenreFullName;
     public $sumVotes;
     
-    // ici fonction pour un track spécifique. l'attribut virtuel qui pourra ensuite être utilisé est $poll->music_genre_name
+    // fonction qui génère un attribut virtuel. Il pourra ensuite être utilisé sous la forme suivante: $poll->music_genre_name
     public function _getMusicGenreName(){
     	$musicGenre = (new MusicServiceAgent())->getMusicGenre($this->_properties['musicstyleid']);
     	if($musicGenre != null){

@@ -24,15 +24,18 @@ class PollsController extends AppController
 	
 	public function index() {
 		
+		if ($this->Auth->user('role') == 2){
+			$okToVote = PollManager::getPollsToVoteFor($this->Auth->user('id'));
+		}
 		$pollsActive = PollManager::getPolls()->find('all', [
 				'conditions' => ['status ='=> 1]
-		]);
-		
+			]);
+				
 		$polls = $this->paginate($pollsActive);
 		
 		$formattedDates = PollManager::getPollsFormattedDates();
 		
-		$this->set(compact('polls', 'formattedDates'));
+		$this->set(compact('polls', 'formattedDates', 'okToVote'));
 		$this->set('_serialize', ['polls']);
 		
 	}
@@ -56,11 +59,12 @@ class PollsController extends AppController
 		$poll = PollManager::getPoll($id);
 			
 		$manager = new PollManager();
+		$okToVote = $manager->isAllowedToVote($id, $this->Auth->user('id'));
 		$tracks = $manager->getVotesRanking($id, $poll->musicstyleid);
 		$formattedDates = $manager->getPollFormattedDates($id);
 		
 		
-		$this->set(compact('poll', 'tracks', 'formattedDates'));
+		$this->set(compact('poll', 'tracks', 'formattedDates', 'okToVote'));
 		$this->set('_serialize', ['poll']);
 		
 	}

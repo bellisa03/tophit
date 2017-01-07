@@ -37,10 +37,6 @@ class VoteTracksTable extends Table
         $this->belongsTo('Votes', [
         		'foreignKey' => 'id_votes'
         ]);
-//         $this->hasOne('Votes', [
-//         		'foreignKey' => 'id',
-//         		'bindingKey' => 'id_votes'
-//         ]);
     }
 
     /**

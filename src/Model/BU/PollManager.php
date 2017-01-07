@@ -9,16 +9,34 @@ class PollManager
     
     public static function getPolls(){
     	
-    	$polls = TableRegistry::get('Polls')->find();
+    	$polls = TableRegistry::get('Polls')->find('all', ['order' =>['begindate desc']]);
     	
     	$serviceAgent = new MusicServiceAgent();
     	
     	foreach ($polls as $poll){
     		$musicGenre = $serviceAgent->getMusicGenre($poll->musicstyleid);
     		
-    		
     	}
+    	
     	return $polls;
+    }
+    
+    public static function getPollsToVoteFor($userId){
+    	 
+    	$polls = TableRegistry::get('Polls')->find('all');
+    	 
+    	$manager = new PollManager();
+    	$okToVote = [];
+    	foreach ($polls as $poll){
+    		if($manager->isAllowedToVote($poll->id, $userId)){
+    			$okToVote[$poll->id] = true;
+    		}
+    		else{
+    			$okToVote[$poll->id] = false;
+    		}
+    	}
+    	 
+    	return $okToVote;
     }
     
     /*
@@ -36,8 +54,8 @@ class PollManager
     		$temp = new date($poll->enddate);
     		$newTemp = $temp->format('d/m/Y');
     		$formattedDates[$poll->id]['enddate'] = $newTemp;
-    		
     	}
+    	
     	return $formattedDates;
     }
     
@@ -97,9 +115,11 @@ class PollManager
     	{
    			$sortarray[$key] = $row->$subfield;   		
     	}
+    	
     	return array_multisort($sortarray, SORT_DESC, $array);
-
     }
+    
+    
     
     /*
      * Fonction qui retourne la liste des titres d'un sondage particulier triés en fonction d'une pondération des votes sous forme de tableau.
@@ -129,6 +149,7 @@ class PollManager
     			}
     		}
 		}
+		
     	PollManager::sortArrayOfArray($musicTracks, 'ranking');
 		
     	return $musicTracks;
@@ -150,5 +171,19 @@ class PollManager
     	}
     	
     	return $tracks;
+    }
+    
+    public function isAllowedToVote($pollId, $userID){
+    
+    	$Votes = TableRegistry::get('Votes')->find('all')
+    		->where([    			
+    			'Votes.id_polls' => $pollId,
+    		]);
+    
+    	foreach ($Votes as $vote){
+    		if($vote->id_users == $userID) return false;
+    		}
+
+    	return true;
     }
 }

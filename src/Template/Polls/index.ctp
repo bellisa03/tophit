@@ -53,9 +53,12 @@
 						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?>
 						                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
 						                <?php }?>
-						                <?php if ($connectedUser['role'] == 2) {?>
+						                <?php if ($connectedUser['role'] == 2 && $okToVote[$poll->id] == true) {?>
 						                    <?= $this->Html->link(__('Voter'), ['controller'=> 'Votes','action' => 'add', $poll->id]) ?>
 						                <?php }?>
+						                <?php if ($connectedUser['role'] == 2 && $okToVote[$poll->id] == false) {?>
+ 											<?= $this->Html->link(__('Voter'), ['controller' => 'Votes','action' => 'add', $poll->id],['target'=>'_blank', 'style' => 'color: grey; pointer-events : none; cursor : default;']) ?>
+ 										<?php }?>
 						                </td>
 						                <?php }?>
 						            </tr>
