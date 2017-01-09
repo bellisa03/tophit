@@ -44,7 +44,7 @@
 							<?= $this->Form->select('role', $roles, ['empty' => '(choisissez)'])?>
 						</div>
 						<div class="top-margin">
-							<?= $this->Form->input('password', ['label' => 'Mot de passe'])?>
+							<?= $this->Form->input('password', ['label' => 'Mot de passe', 'value' => ''])?>
 							<br>
 							
 						</div>

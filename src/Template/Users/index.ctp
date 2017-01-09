@@ -50,7 +50,8 @@
 						                <td><?= ($user->created)? h($formattedDates[$user->id]['created']): 'null' ?></td>
 						                <td><?= ($user->modified)? h($formattedDates[$user->id]['modified']): 'null' ?></td>
 						                <td class="actions">
-						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $user->id]) ?>
+						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $user->id], 
+						                    		['confirm' => __('Modifier un profil utilisateur entraîne une réinitialisation du mot de passe. Etes-vous sûr de vouloir modifier l\'utilisateur # {0}?', $user->id)]) ?>
 						                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $user->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer l\'utilisateur # {0}?', $user->id)]) ?>
 						                </td>
 						            </tr>

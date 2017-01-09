@@ -7,5 +7,6 @@ return [
 		'textarea'=>' <textarea class="form-control" name="{{name}}" {{attrs}} rows="3">{{value}}</textarea>',
 		'selectMultiple' => '<select class="form-control" name="{{name}}[]" multiple="multiple" {{attrs}}>{{content}}</select>',
 		'label' => '<label  {{attrs}}>{{text}}</label>',
+		//'dateWidget' => '<input type="text" class="datetime" name="{{name}}"{{attrs}}/>'
 		'dateWidget' =>'{{day}}{{month}}{{year}}{{hour}}{{minute}}{{second}}{{meridian}}'
 ];

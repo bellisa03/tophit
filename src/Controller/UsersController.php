@@ -97,6 +97,8 @@ class UsersController extends AppController
 				'contain' => []
 		]);
 		
+		$user->password ='';
+		
 		if ($this->request->is(['patch', 'post', 'put'])) {
 			$data = $this->request->data();
 			$user->login = $data['login'];

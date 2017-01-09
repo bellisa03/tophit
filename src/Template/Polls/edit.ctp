@@ -37,9 +37,17 @@
 						<div class="top-margin">
 							<?= $this->Form->input('description', ['label' => 'Description'])?>
 						</div>
-						<div class="top-margin">
-							<?= $this->Form->input('begindate', ['label' => 'Début'])?>
-						</div>
+    
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                    <?= $this->Form->input('begindate', ['type' => 'text', 'label' => 'Début'])?>
+                    <span class="input-group-addon">
+                        <span class="fa-calendar-o:before"></span>
+                    </span>
+                </div>
+           
+        
+    </div>
 						<div class="top-margin">
 							<?= $this->Form->input('enddate', ['label' => 'Fin'])?>
 						</div>				
@@ -62,3 +70,10 @@
 		</div>
 	</div>	<!-- /container -->
 	
+	<script type="text/javascript">
+            $(document).ready(function () {
+                $('#datetimepicker2').datetimepicker({
+                    locale: 'fr'
+                });
+            });
+        </script>

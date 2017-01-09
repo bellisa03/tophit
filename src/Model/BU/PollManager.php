@@ -175,15 +175,20 @@ class PollManager
     
     public function isAllowedToVote($pollId, $userID){
     
-    	$Votes = TableRegistry::get('Votes')->find('all')
+    	$votes = TableRegistry::get('Votes')->find('all')
     		->where([    			
     			'Votes.id_polls' => $pollId,
+    		])
+    		->andWhere([
+    			'Votes.id_users' => $userID,
     		]);
+    		
     
-    	foreach ($Votes as $vote){
-    		if($vote->id_users == $userID) return false;
+    	foreach ($votes as $vote){
+    		if($vote) return false;
     		}
 
+    	
     	return true;
     }
 }
