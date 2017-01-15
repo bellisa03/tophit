@@ -1,7 +1,22 @@
 <?php $this->start('navigation')?>
 	<?= $this->element("menu", ["activeItem" => "Polls"]); ?>
 <?php $this->end()?>
+<?= $this->start('styles') ?>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+<?= $this->end() ?>
 
+<?= $this->start('scripts') ?>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+          $('#datetimepicker2').datetimepicker({
+              locale: 'fr'
+          });
+      });
+    </script>
+<?= $this->end() ?>
 <header id="head" class="secondary"></header>
 	
 <!-- container -->
@@ -39,10 +54,11 @@
 						</div>
     
             <div class="form-group">
+            	<?= $this->Form->label('begindate', 'Début')?>
                 <div class='input-group date' id='datetimepicker2'>
-                    <?= $this->Form->input('begindate', ['type' => 'text', 'label' => 'Début'])?>
+                    <?= $this->Form->input('begindate', ['type' => 'text', 'label' => false])?>
                     <span class="input-group-addon">
-                        <span class="fa-calendar-o:before"></span>
+                        <span class="fa fa-calendar"></span>
                     </span>
                 </div>
            
@@ -69,11 +85,3 @@
 
 		</div>
 	</div>	<!-- /container -->
-	
-	<script type="text/javascript">
-            $(document).ready(function () {
-                $('#datetimepicker2').datetimepicker({
-                    locale: 'fr'
-                });
-            });
-        </script>

@@ -12,8 +12,17 @@
 	
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<?= $this->Html->css('bootstrap.min.css')?>
-	<?= $this->Html->css('font-awesome.min.css')?>
-
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+	
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<?= $this->Html->script('headroom.min.js')?>
+	<?= $this->Html->script('jQuery.headroom.min.js')?>
+	<?= $this->Html->script('template.js')?>
+	
+	<?= $this->fetch('scripts')?>
+	
 	<!-- Custom styles for our template -->
 	
 	<?= $this->Html->css('bootstrap-theme.css', ['media'=>'screen'])?>
@@ -41,7 +50,6 @@
 		</div>
 	</div> 
 	<!-- /.navbar -->
-	<div>
 	
 	
 	<?= $this->fetch('content') ?>
@@ -95,10 +103,6 @@
 	</footer>	
 		
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	<?= $this->Html->script('headroom.min.js')?>
-	<?= $this->Html->script('jQuery.headroom.min.js')?>
-	<?= $this->Html->script('template.js')?>
+	
 </body>
 </html>
