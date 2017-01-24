@@ -39,7 +39,6 @@ class VotesController extends AppController
 
 			$poll = PollManager::getPoll($idPoll);
 			$tracks = $manager->getListToVote($idPoll, $poll->musicstyleid);
-			$formattedDates = $manager->getPollFormattedDates($idPoll);
 			
 			$votes = TableRegistry::get('Votes');
 			$vote = $votes->newEntity($this->request->data(), [
@@ -69,7 +68,7 @@ class VotesController extends AppController
 				}
 			}
 			
-			$this->set(compact('poll', 'tracks', 'vote', 'formattedDates'));
+			$this->set(compact('poll', 'tracks', 'vote'));
 			$this->set('_serialize', ['vote']);
 		}else {
 			$this->Flash->error(__('Vous avez déjà voté pour ce sondage'));

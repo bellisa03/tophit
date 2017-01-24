@@ -45,8 +45,8 @@
 						                <td><?= $this->Html->link(($poll->title), ['action' => 'view', $poll->id]) ?></td>
 						                <td><?= h($poll->music_genre_name) ?></td>
 						                <td><?= h($poll->description) ?></td>
-						                <td><?= ($poll->begindate)? h($formattedDates[$poll->id]['begindate']): 'null'?></td>
-						                <td><?= ($poll->enddate)? h($formattedDates[$poll->id]['enddate']): 'null' ?></td>
+						                <td><?= h($poll->begindate) ?></td>
+						                <td><?= h($poll->enddate) ?></td>
 						                <?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
 						                <td class="actions">
 						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?>

@@ -49,11 +49,11 @@
 					        </tr>
 					        <tr>
 					            <th><?= __('Début') ?></th>
-					            <td><?= ($poll->begindate)? h($formattedDates[$poll->id]['begindate']): 'null' ?></td>
+					            <td><?= h($poll->begindate) ?></td>
 					        </tr>
 					        <tr>
 					            <th><?= __('Fin') ?></th>
-					            <td><?= ($poll->enddate)? h($formattedDates[$poll->id]['enddate']): 'null' ?></td>
+					            <td><?= h($poll->enddate) ?></td>
 					        </tr>
 					        <tr>
 					            <th><?= __('Nombre de votes enregistrés') ?></th>

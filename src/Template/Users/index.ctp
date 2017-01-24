@@ -47,8 +47,8 @@
 						                <td><?= h($user->lastname) ?></td>
 						                <td><?= h($user->email) ?></td>
 						                <td><?= h($user->role_name) ?></td>
-						                <td><?= ($user->created)? h($formattedDates[$user->id]['created']): 'null' ?></td>
-						                <td><?= ($user->modified)? h($formattedDates[$user->id]['modified']): 'null' ?></td>
+						                <td><?= h($user->created) ?></td>
+						                <td><?= h($user->modified) ?></td>
 						                <td class="actions">
 						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $user->id], 
 						                    		['confirm' => __('Modifier un profil utilisateur entraîne une réinitialisation du mot de passe. Etes-vous sûr de vouloir modifier l\'utilisateur # {0}?', $user->id)]) ?>

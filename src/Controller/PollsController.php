@@ -6,7 +6,7 @@ use Cake\Controller\Controller;
 use Cake\Event\Event;
 use App\Model\BU\PollManager;
 use App\Model\BU\MusicServiceAgent;
-
+use Cake\I18n\FrozenDate;
 
 class PollsController extends AppController
 {
@@ -33,9 +33,7 @@ class PollsController extends AppController
 				
 		$polls = $this->paginate($pollsActive);
 		
-		$formattedDates = PollManager::getPollsFormattedDates();
-		
-		$this->set(compact('polls', 'formattedDates', 'okToVote'));
+		$this->set(compact('polls', 'okToVote'));
 		$this->set('_serialize', ['polls']);
 		
 	}
@@ -48,9 +46,7 @@ class PollsController extends AppController
 	
 		$polls = $this->paginate($pollsInactive);
 	
-		$formattedDates = PollManager::getPollsFormattedDates();
-	
-		$this->set(compact('polls', 'formattedDates'));
+		$this->set(compact('polls'));
 		$this->set('_serialize', ['polls']);
 	
 	}
@@ -61,10 +57,8 @@ class PollsController extends AppController
 		$manager = new PollManager();
 		$okToVote = $manager->isAllowedToVote($id, $this->Auth->user('id'));
 		$tracks = $manager->getVotesRanking($id, $poll->musicstyleid);
-		$formattedDates = $manager->getPollFormattedDates($id);
 		
-		
-		$this->set(compact('poll', 'tracks', 'formattedDates', 'okToVote'));
+		$this->set(compact('poll', 'tracks', 'okToVote'));
 		$this->set('_serialize', ['poll']);
 		
 	}
@@ -78,14 +72,8 @@ class PollsController extends AppController
 			$data = $this->request->data();
 			$poll->title = $data['title'];
 			$poll->description = $data['description'];
-			if($data['begindate']){
-				$begindate = $data['begindate']['year']. '-' . $data['begindate']['month']. '-' . $data['begindate']['day'];
-			}
-			$poll->begindate = $begindate;
-			if($data['enddate']){
-				$enddate = $data['enddate']['year']. '-' . $data['enddate']['month']. '-' . $data['enddate']['day'];
-			}
-			$poll->enddate = $enddate;
+			$poll->begindate = FrozenDate::createFromFormat('d-m-Y', $data['begindate'])->format('Y-m-d');
+			$poll->enddate = FrozenDate::createFromFormat('d-m-Y', $data['enddate'])->format('Y-m-d');
 			$poll->status = $data['status'];
 			$poll->musicstyleid = $data['musicstyleid'];
 			
@@ -110,14 +98,8 @@ class PollsController extends AppController
 			$data = $this->request->data();
 			$poll->title = $data['title'];
 			$poll->description = $data['description'];
-			if($data['begindate']){
-				$begindate = $data['begindate']['year']. '-' . $data['begindate']['month']. '-' . $data['begindate']['day'];
-			}
-			$poll->begindate = $begindate;
-			if($data['enddate']){
-				$enddate = $data['enddate']['year']. '-' . $data['enddate']['month']. '-' . $data['enddate']['day'];
-			}
-			$poll->enddate = $enddate;
+			$poll->begindate = FrozenDate::createFromFormat('d-m-Y', $data['begindate'])->format('Y-m-d');
+			$poll->enddate = FrozenDate::createFromFormat('d-m-Y', $data['enddate'])->format('Y-m-d');
 			$poll->status = $data['status'];
 			$poll->musicstyleid = $data['musicstyleid'];
 				

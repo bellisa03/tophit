@@ -1,6 +1,7 @@
 <?php $this->start('navigation')?>
 	<?= $this->element("menu", ["activeItem" => "Polls"]); ?>
 <?php $this->end()?>
+
 <?= $this->start('styles') ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
@@ -11,7 +12,13 @@
     <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
+          $('#datetimepicker1').datetimepicker({
+              format: 'DD-MM-YYYY',
+              locale: 'fr',
+              minDate: moment('2016-09-01')
+          });
           $('#datetimepicker2').datetimepicker({
+              format: 'DD-MM-YYYY',
               locale: 'fr'
           });
       });
@@ -53,20 +60,25 @@
 							<?= $this->Form->input('description', ['label' => 'Description'])?>
 						</div>
     
-            <div class="form-group">
-            	<?= $this->Form->label('begindate', 'Début')?>
-                <div class='input-group date' id='datetimepicker2'>
-                    <?= $this->Form->input('begindate', ['type' => 'text', 'label' => false])?>
-                    <span class="input-group-addon">
-                        <span class="fa fa-calendar"></span>
-                    </span>
-                </div>
-           
-        
-    </div>
-						<div class="top-margin">
-							<?= $this->Form->input('enddate', ['label' => 'Fin'])?>
-						</div>				
+			            <div class="form-group" style="width: 30%">
+			            	<?= $this->Form->label('begindate', 'Début')?>
+			                <div class='input-group date' id='datetimepicker1'>
+			                    <?= $this->Form->input('begindate', ['type' => 'text', 'label' => false])?>
+			                    <span class="input-group-addon">
+			                        <span class="fa fa-calendar"></span>
+			                    </span>
+			                </div>       
+			            </div>
+			            <div class="form-group" style="width: 30%">
+			            	<?= $this->Form->label('enddate', 'Fin')?>
+			                <div class='input-group date' id='datetimepicker2'>
+			                    <?= $this->Form->input('enddate', ['type' => 'text', 'label' => false])?>
+			                    <span class="input-group-addon">
+			                        <span class="fa fa-calendar"></span>
+			                    </span>
+			                </div>       
+			            </div>
+			            		
 						<div class="top-margin">
 							<?= $this->Form->label('Actif')?>
 							<?= $this->Form->checkbox('status', ['value' => 1, 'hiddenField' => 2])?>

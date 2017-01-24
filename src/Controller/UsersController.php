@@ -38,9 +38,7 @@ class UsersController extends AppController
 	{
 		$users = $this->paginate($this->Users);
 		
-		$formattedDates = UserManager::getUsersFormattedDates();
-		
-		$this->set(compact('users', 'formattedDates'));
+		$this->set(compact('users'));
 		$this->set('_serialize', ['users']);
 	}
 	

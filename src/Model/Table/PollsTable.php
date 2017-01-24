@@ -55,7 +55,7 @@ class PollsTable extends Table
             ->allowEmpty('description');
 
         $validator
-            ->date('begindate')
+        	->date('begindate')
             ->allowEmpty('begindate');
 
         $validator
