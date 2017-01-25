@@ -15,11 +15,13 @@
           $('#datetimepicker1').datetimepicker({
               format: 'DD-MM-YYYY',
               locale: 'fr',
-              minDate: moment('2016-09-01')
+              minDate: moment('2016-09-01'),
+              ignoreReadonly: true
           });
           $('#datetimepicker2').datetimepicker({
               format: 'DD-MM-YYYY',
-              locale: 'fr'
+              locale: 'fr',
+              ignoreReadonly: true
           });
       });
     </script>
@@ -63,7 +65,7 @@
 			            <div class="form-group" style="width: 30%">
 			            	<?= $this->Form->label('begindate', 'Début')?>
 			                <div class='input-group date' id='datetimepicker1'>
-			                    <?= $this->Form->input('begindate', ['type' => 'text', 'label' => false])?>
+			                    <?= $this->Form->input('begindate', ['type' => 'text', 'label' => false, 'readonly'])?>
 			                    <span class="input-group-addon">
 			                        <span class="fa fa-calendar"></span>
 			                    </span>
@@ -72,7 +74,7 @@
 			            <div class="form-group" style="width: 30%">
 			            	<?= $this->Form->label('enddate', 'Fin')?>
 			                <div class='input-group date' id='datetimepicker2'>
-			                    <?= $this->Form->input('enddate', ['type' => 'text', 'label' => false])?>
+			                    <?= $this->Form->input('enddate', ['type' => 'text', 'label' => false, 'readonly'])?>
 			                    <span class="input-group-addon">
 			                        <span class="fa fa-calendar"></span>
 			                    </span>
