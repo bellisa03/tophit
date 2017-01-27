@@ -1,6 +1,3 @@
-<?php
-use PhpParser\Node\Stmt\If_;
-?>
 <div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class= <?= (!empty($activeItem) && ($activeItem =='Home') )?'active' :'inactive' ?>>

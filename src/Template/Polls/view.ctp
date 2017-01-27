@@ -68,7 +68,7 @@
     				<table class="table table-striped">
 			        <thead>
 			            <tr>
-			            <?php if($poll->sumVote != 0){?>
+			            <?php if($poll->sumVotes > 0){?>
 			            	<th><?= $this->Paginator->sort('Classement') ?></th>
 			            <?php }?>
 			                <th><?= $this->Paginator->sort('Titre') ?></th>
@@ -83,7 +83,7 @@
 			        <?php $temp = null; ?>
 			        <?php foreach ($tracks as $track): ?>
 			        	<!-- "if" déterminant si il faut ou non afficher le classement. La colonne classement ne s'affichera que si des votes sont déjà comptabilisés. -->
-			            <?php if($poll->sumVote != 0):?>
+			            <?php if($poll->sumVotes > 0):?>
 			            	<?php /* @var $track  App\Model\Entity\MusicTrack */  ?>
 			            	<?php if($temp != null && $temp > $track->ranking)$i ++;?>
 			            	<?php $temp = $track->ranking;?>
@@ -95,7 +95,7 @@
 			                <td><?=$this->Number->format($track->ranking)?></td>
 			                
 			            </tr>
-			            <?php endforeach; ?>
+			        <?php endforeach; ?>
 			        </tbody>
 			    </table>
 			    </div>

@@ -90,7 +90,7 @@
 	            <?= $this->Paginator->numbers() ?>
 	            <?= $this->Paginator->next(__('suivant') . ' >') ?>
 	        </ul>
-	        <p><?= $this->Paginator->counter() ?></p>
+	        <p><?= $this->Paginator->counter('Page {{page}} de {{pages}}') ?></p>
     	</div>
 	</div>	<!-- /container -->
 	

@@ -27,19 +27,4 @@ class UserManager
 		var_dump($users); 
 		return $users;
 	}
-	
-	public static function getUsersFormattedDates(){
-		$users = TableRegistry::get('Users')->find();
-		 
-		foreach ($users as $user){
-			$temp = new \DateTime($user->created);
-			$newTemp = $temp->format('d/m/Y - H:m');
-			$formattedDates[$user->id]['created'] = $newTemp;
-			$temp = new \DateTime($user->modified);
-			$newTemp = $temp->format('d/m/Y - H:m');
-			$formattedDates[$user->id]['modified'] = $newTemp;
-	
-		}
-		return $formattedDates;
-	}
 }

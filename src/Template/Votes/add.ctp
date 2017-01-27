@@ -2,6 +2,18 @@
 	<?= $this->element("menu", ["activeItem" => "Polls"]); ?>
 <?php $this->end()?>
 
+<?= $this->start('scripts') ?>
+	<script type="text/javascript">
+	function AdaptList(){
+		var array = '<?php echo $tracks;?>';
+		index = document.vote.track1.selectedIndex;
+		if (index == 0) return;
+		
+		return array.splice( index, 1);
+	}
+	
+	</script>
+<?= $this->end() ?>
 <header id="head" class="secondary"></header>
 	
 <!-- container -->
@@ -58,24 +70,24 @@
 					    <h2 class="thin text-left">Vote</h2>
 					    <p>Sélectionnez les titres de votre choix par ordre de préférence dans les différents menus déroulants.</p>
 					    
-						<?= $this->Form->create($vote) ?>
+						<?= $this->Form->create($vote, ['name' => 'vote']) ?>
 						<div class="top-margin" style="font-weight: bold; color: #777;">
 							<?= $this->Form->hidden('id_polls', ['value' => $poll->id])?>
 							<?= $this->Form->hidden('id_users', ['value' => $connectedUser['id']])?>
 							<?= __('Titre que vous placez en 1ère position:')?>
-							<?= $this->Form->select('vote_tracks.0.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->select('vote_tracks.0.trackid', $tracks, ['name'=> 'track1', 'onChange' => 'AdaptList()', 'empty' => '(choisissez)'])?>
 							<?= $this->Form->hidden('vote_tracks.0.trackorder', ['value' => 1])?>
 							<?= __('Titre que vous placez en 2ème position:')?>
-							<?= $this->Form->select('vote_tracks.1.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->select('vote_tracks.1.trackid', $tracks, ['id'=> 'track2', 'empty' => '(choisissez)'])?>
 							<?= $this->Form->hidden('vote_tracks.1.trackorder', ['value' => 2])?>
 							<?= __('Titre que vous placez en 3ème position:')?>
-							<?= $this->Form->select('vote_tracks.2.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->select('vote_tracks.2.trackid', $tracks, ['id'=> 'track3', 'empty' => '(choisissez)'])?>
 							<?= $this->Form->hidden('vote_tracks.2.trackorder', ['value' => 3])?>
 							<?= __('Titre que vous placez en 4ème position:')?>
-							<?= $this->Form->select('vote_tracks.3.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->select('vote_tracks.3.trackid', $tracks, ['id'=> 'track4', 'empty' => '(choisissez)'])?>
 							<?= $this->Form->hidden('vote_tracks.3.trackorder', ['value' => 4])?>
 							<?= __('Titre que vous placez en 5ème position:')?>
-							<?= $this->Form->select('vote_tracks.4.trackid', $tracks, ['empty' => '(choisissez)'])?>
+							<?= $this->Form->select('vote_tracks.4.trackid', $tracks, ['id'=> 'track5', 'empty' => '(choisissez)'])?>
 							<?= $this->Form->hidden('vote_tracks.4.trackorder', ['value' => 5])?>
 						</div>
 						
