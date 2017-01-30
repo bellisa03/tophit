@@ -51,20 +51,36 @@ class VotesController extends AppController
 				$data = $this->request->data();
 				$vote->id_polls = $data['id_polls'];
 				$vote->id_users = $data['id_users'];
-					
+				
+				// la variable de type array $trackid va permettre de pouvoir faire un tri sur les valeurs distinctes fournies par l'utilisateur lors de son vote
+				$trackid = [];
+				
 				foreach ($data['vote_tracks'] as $data_vote_track){
 					$vote_track = $this->Votes->VoteTracks->newEntity();
 					$vote_track->trackid = $data_vote_track['trackid'];
+					$trackid[] = $data_vote_track['trackid'];
 					$vote_track->trackorder = $data_vote_track['trackorder'];
 					$selection[] = $vote_track;
-				}
-				$vote->vote_track = $selection;
 					
-				if ($votes->save($vote, ['associated' => ['VoteTracks']])) {
-					$this->Flash->success(__('Le vote est sauvegardé.'));
-					return $this->redirect(['controller'=>'polls','action' => 'index']);
-				} else {
-					$this->Flash->error(__('Le vote n\'a pu être sauvegardé. Veuillez essayer à nouveau.'));
+				}
+				
+				// je crée un tableau ne contenant plus que les valeurs distinctes et je vérifie ensuite que sa longueur est bien égale à 5.
+				$distinctValues = array_unique($trackid);
+				$count = count($distinctValues);
+				
+				if(isset($count) && $count == 5){
+					
+					$vote->vote_track = $selection;
+					
+					if ($votes->save($vote, ['associated' => ['VoteTracks']])) {
+						$this->Flash->success(__('Le vote est sauvegardé.'));
+						return $this->redirect(['controller'=>'polls','action' => 'index']);
+					} else {
+						$this->Flash->error(__('Le vote n\'a pu être sauvegardé. Veuillez essayer à nouveau.'));
+					}
+				}
+				else {
+					$this->Flash->error(__('Veuillez voter pour 5 titres différents.'));
 				}
 			}
 			

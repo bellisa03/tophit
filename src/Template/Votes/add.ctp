@@ -2,18 +2,6 @@
 	<?= $this->element("menu", ["activeItem" => "Polls"]); ?>
 <?php $this->end()?>
 
-<?= $this->start('scripts') ?>
-	<script type="text/javascript">
-	function AdaptList(){
-		var array = '<?php echo $tracks;?>';
-		index = document.vote.track1.selectedIndex;
-		if (index == 0) return;
-		
-		return array.splice( index, 1);
-	}
-	
-	</script>
-<?= $this->end() ?>
 <header id="head" class="secondary"></header>
 	
 <!-- container -->
@@ -75,7 +63,7 @@
 							<?= $this->Form->hidden('id_polls', ['value' => $poll->id])?>
 							<?= $this->Form->hidden('id_users', ['value' => $connectedUser['id']])?>
 							<?= __('Titre que vous placez en 1ère position:')?>
-							<?= $this->Form->select('vote_tracks.0.trackid', $tracks, ['name'=> 'track1', 'onChange' => 'AdaptList()', 'empty' => '(choisissez)'])?>
+							<?= $this->Form->select('vote_tracks.0.trackid', $tracks, ['id'=> 'track2', 'empty' => '(choisissez)'])?>
 							<?= $this->Form->hidden('vote_tracks.0.trackorder', ['value' => 1])?>
 							<?= __('Titre que vous placez en 2ème position:')?>
 							<?= $this->Form->select('vote_tracks.1.trackid', $tracks, ['id'=> 'track2', 'empty' => '(choisissez)'])?>
