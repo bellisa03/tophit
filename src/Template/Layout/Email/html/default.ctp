@@ -16,6 +16,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 <head>
+	<img src="cid:logo-id">
     <title><?= $this->fetch('title') ?></title>
 </head>
 <body>

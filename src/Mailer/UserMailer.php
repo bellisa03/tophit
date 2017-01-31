@@ -8,17 +8,20 @@ class UserMailer extends Mailer
 	public function welcome($user)
 	{
 		$this
-		->sender('isabelle.kinet79@gmail.com')
-		->to($user->email)
-		->subject(sprintf('Welcome %s', $user->username))
-		//->template('welcome_mail') // Par défaut le template avec le même nom que le nom de la méthode est utilisé.
-		->layout('custom');
+		->transport('gmail')
+		->emailFormat('html')
+		->attachments(['tophit.png' => ['file' => '../webroot/img/logo_tophit.png', 'contentId' => 'logo-id']])
+		->to($user['email'])
+		->subject(sprintf('Bienvenue sur la plateforme TopH.it, %s', $user['login']))
+		->viewVars(['login' => $user['login'], 'help' => 'kinet.isa@gmail.com'])
+		//->template: d'abord le template, ensuite le layout
+		->template('welcome', 'default');
 	}
 
 	public function contact()
 	{
 		$this
-		->to('isabelle.kinet79@gmail.com')
+		->to('kinet.isa@gmail.com')
 		->subject('Problème de connexion');
 	}
 }

@@ -67,7 +67,7 @@
 						<div class="widget-body">
 							<p>Administrateur<br>
 							+32 123 45 67 89<br>
-								<a href="mailto:#">support@tophit.com</a><br>
+								<a href="mailto:kinet.isa@gmail.com">kinet.isa@gmail.com</a><br>
 								<br>
 								Rue du Pont 53, 1000 Bruxelles
 							</p>	
