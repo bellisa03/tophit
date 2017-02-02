@@ -26,14 +26,14 @@
 						<div class="panel-body">
 							<table class="table table-striped">
 						        <thead>
-						            <tr>
+						            <tr style="color: #1e1e4a;">
 						                <th><?= $this->Paginator->sort('Id') ?></th>
 						                <th><?= $this->Paginator->sort('Intitulé') ?></th>
 						                <th><?= $this->Paginator->sort('Catégorie') ?></th>
 						                <th><?= $this->Paginator->sort('Description') ?></th>
 						                <th><?= $this->Paginator->sort('Début') ?></th>
 						                <th><?= $this->Paginator->sort('Fin') ?></th>
-						                <th><?= $this->Paginator->sort('Votes') ?></th>
+						                <th><?= __('Votes') ?></th>
 						                <?php if (isset($connectedUser)) {?>
 						                <th class="actions"></th>
 						                <?php }?>

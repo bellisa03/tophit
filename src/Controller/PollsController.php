@@ -27,22 +27,18 @@ class PollsController extends AppController
 		if ($this->Auth->user('role') == 2){
 			$okToVote = PollManager::getPollsToVoteFor($this->Auth->user('id'));
 		}
-		$pollsActive = PollManager::getPolls()->find('all', [
-				'conditions' => ['status ='=> 1]
-			]);
-				
-		$polls = $this->paginate($pollsActive);
+		$polls = PollManager::getPollsActive()->find('all');
 		
-		$this->set(compact('polls', 'okToVote'));
+		//$polls = $this->paginate($pollsActive);
+		
+		$this->set(compact('polls', 'okToVote', $this->paginate($polls)));
 		$this->set('_serialize', ['polls']);
 		
 	}
 	
 	public function archive() {
 	
-		$pollsInactive = PollManager::getPolls()->find('all', [
-				'conditions' => ['status ='=> 2]
-		]);
+		$pollsInactive = PollManager::getPollsInactive()->find('all');
 	
 		$polls = $this->paginate($pollsInactive);
 	

@@ -7,16 +7,55 @@ use Cake\I18n\Date;
 class PollManager
 {
     
-    public static function getPolls(){
+    public static function getPollsActive(){
     	
-    	$polls = TableRegistry::get('Polls')->find('all', ['order' =>['begindate desc']]);
+    	$polls = TableRegistry::get('Polls')->find('all', ['order' =>['begindate' => 'desc']])
+    		->where([    			
+    			'status =' => 1,
+    		]);
     	
+    	$votes = TableRegistry::get('Votes')->find();
     	$serviceAgent = new MusicServiceAgent();
     	
     	foreach ($polls as $poll){
     		$musicGenre = $serviceAgent->getMusicGenre($poll->musicstyleid);
+    		
+    		$poll->sumVotes = 0;
+    		if($votes != null){
+    			foreach ($votes as $vote){
+    				if($vote->id_polls == $poll->id){
+    					$poll->sumVotes ++;
+    				}
+    			}
+    		}
     	}
     	
+    	return $polls;
+    }
+    
+    public static function getPollsInactive(){
+    	 
+    	$polls = TableRegistry::get('Polls')->find('all', ['order' =>['begindate' => 'desc']])
+    	->where([
+    			'status =' => 2,
+    	]);
+    	 
+    	$votes = TableRegistry::get('Votes')->find();
+    	$serviceAgent = new MusicServiceAgent();
+    	 
+    	foreach ($polls as $poll){
+    		$musicGenre = $serviceAgent->getMusicGenre($poll->musicstyleid);
+    
+    		$poll->sumVotes = 0;
+    		if($votes != null){
+    			foreach ($votes as $vote){
+    				if($vote->id_polls == $poll->id){
+    					$poll->sumVotes ++;
+    				}
+    			}
+    		}
+    	}
+    	 
     	return $polls;
     }
     
