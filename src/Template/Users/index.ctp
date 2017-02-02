@@ -35,7 +35,7 @@
 						                <th><?= $this->Paginator->sort('role') ?></th>
 						                <th><?= $this->Paginator->sort('création') ?></th>
 						                <th><?= $this->Paginator->sort('modification') ?></th>
-						                <th class="actions"><?= __('Actions') ?></th>
+						                <th class="actions"></th>
 						            </tr>
 						        </thead>
 						        <tbody>
@@ -50,9 +50,10 @@
 						                <td><?= h($user->created) ?></td>
 						                <td><?= h($user->modified) ?></td>
 						                <td class="actions">
-						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $user->id], 
-						                    		['confirm' => __('Modifier un profil utilisateur entraîne une réinitialisation du mot de passe. Etes-vous sûr de vouloir modifier l\'utilisateur # {0}?', $user->id)]) ?>
-						                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $user->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer l\'utilisateur # {0}?', $user->id)]) ?>
+						                    <?= $this->Html->link('<i class="fa fa-pencil-square-o" style="font-size: 20px" aria-hidden="true"> </i>', ['action' => 'edit', $user->id], 
+						                    		['escape' => false, 'confirm' => __('Modifier un profil utilisateur entraîne une réinitialisation du mot de passe. Etes-vous sûr de vouloir modifier l\'utilisateur # {0}?', $user->id)]) ?>
+						                    <span style="margin-left: 6px"></span>
+						                    <?= $this->Form->postLink('<i class="fa fa-trash" style="font-size: 20px" aria-hidden="true"> </i>', ['action' => 'delete', $user->id], ['escape' => false, 'confirm' => __('Etes-vous sûr de vouloir supprimer l\'utilisateur # {0}?', $user->id)]) ?>
 						                </td>
 						            </tr>
 						            <?php endforeach; ?>

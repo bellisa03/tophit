@@ -79,7 +79,7 @@ class UsersController extends AppController
 			
 			if ($this->Users->save($user)) {
 				$this->getMailer('User')->send('welcome', [$user]);
-				$this->Flash->success(__('L\'utilisateur a été sauvegardé.'));
+				$this->Flash->success(__('L\'utilisateur a été sauvegardé. Un email de bienvenue vient de lui être adressé'));
 				return $this->redirect(['action' =>'index']);
 			} else {
 				$this->Flash->error(__('L\'utilisateur n\'a pu être sauvegardé. Veuillez essayer à nouveau.'));

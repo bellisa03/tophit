@@ -2,6 +2,7 @@
 namespace App\Mailer;
 
 use Cake\Mailer\Mailer;
+use Cake\Mailer\Email;
 
 class UserMailer extends Mailer
 {
@@ -13,7 +14,7 @@ class UserMailer extends Mailer
 		->attachments(['tophit.png' => ['file' => '../webroot/img/logo_tophit.png', 'contentId' => 'logo-id']])
 		->to($user['email'])
 		->subject(sprintf('Bienvenue sur la plateforme TopH.it, %s', $user['login']))
-		->viewVars(['login' => $user['login'], 'help' => 'kinet.isa@gmail.com'])
+		->viewVars(['login' => $user['login'], 'help' => CONTACT])
 		//->template: d'abord le template, ensuite le layout
 		->template('welcome', 'default');
 	}

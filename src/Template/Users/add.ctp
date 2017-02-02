@@ -17,6 +17,7 @@
 			
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
+			
 				<header class="page-header">
 					<h1 class="page-title">Gestion des Profils Utilisateurs</h1>
 				</header>
@@ -51,15 +52,18 @@
 						<br>
 
 						<div class="col-lg-12 text-right">
+							<?= $this->Html->link('Annuler', ['action' =>'index'], ['class' => 'btn btn-action', 'style' => 'background: #888; color: white']) ?>
 							<?= $this->Form->button(__('Valider'), ['class' => 'btn btn-action', 'style' => 'background: #6a6aa5; color: white'])?>
 						</div>
     					<?= $this->Form->end() ?>
     				</div>
+    				
 				</div>
 				
 			</article>
 			<!-- /Article -->
-
+		
 		</div>
+	
 	</div>	<!-- /container -->
 	

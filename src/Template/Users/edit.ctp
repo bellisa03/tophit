@@ -17,6 +17,7 @@
 			
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
+			
 				<header class="page-header">
 					<h1 class="page-title">Gestion des Profils Utilisateurs</h1>
 				</header>
@@ -45,36 +46,22 @@
 						</div>
 						<div class="top-margin">
 							<?= $this->Form->input('password', ['label' => 'Mot de passe', 'value' => ''])?>
-							<br>
-							
-						</div>
-						<hr>
-						<br>
-						<div class="top-margin">
-							<span style= "font-weight: bold; padding-right: 20px; color:#555"><?= __('Connexion via Facebook*')?></span>
-							
-							<?= $this->Form->button(__('Obtenir un jeton'), ['class' => 'btn btn-default'])?>
-							
 						</div>
 						
+						<hr>
+						<br>
+						
 						<div class="col-lg-12 text-right">
+							<?= $this->Html->link('Annuler', ['action' =>'index'], ['class' => 'btn btn-action', 'style' => 'background: #888; color: white']) ?>
 							<?= $this->Form->button(__('Valider'), ['class' => 'btn btn-action', 'style' => 'background: #6a6aa5; color: white'])?>
 						</div>
     					<?= $this->Form->end() ?>
-    				</div>
-    					
-    					<div class="thin text-center">
-							<p>*si l'utilisateur souhaite se connecter grâce à son compte Facebook, son nom d'utilisateur devra correspondre à son identifiant Facebook</p>
-						</div>
-
-					
-					
-
+    				</div>	
 				</div>
 				
 			</article>
 			<!-- /Article -->
 
 		</div>
+		
 	</div>	<!-- /container -->
-	

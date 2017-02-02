@@ -33,6 +33,7 @@ class PollManager
     		else{
     			$okToVote[$poll->id] = false;
     		}
+    		
     	}
     	 
     	return $okToVote;
@@ -149,7 +150,6 @@ class PollManager
     	foreach ($votes as $vote){
     		if($vote) return false;
     		}
-
     	
     	return true;
     }

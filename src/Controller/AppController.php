@@ -19,6 +19,7 @@ use Cake\Event\Event;
 
 define('ADMIN', 'Administrateur');
 define('USER', 'Utilisateur');
+define('CONTACT', 'kinet.isa@gmail.com');
 
 /**
  * Application Controller

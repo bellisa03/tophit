@@ -33,8 +33,9 @@
 						                <th><?= $this->Paginator->sort('Description') ?></th>
 						                <th><?= $this->Paginator->sort('Début') ?></th>
 						                <th><?= $this->Paginator->sort('Fin') ?></th>
+						                <th><?= $this->Paginator->sort('Votes') ?></th>
 						                <?php if (isset($connectedUser)) {?>
-						                <th class="actions"><?= __('Actions') ?></th>
+						                <th class="actions"></th>
 						                <?php }?>
 						            </tr>
 						        </thead>
@@ -47,17 +48,19 @@
 						                <td><?= h($poll->description) ?></td>
 						                <td><?= h($poll->begindate) ?></td>
 						                <td><?= h($poll->enddate) ?></td>
+						                <td><?= $this->Number->format($poll->sumVotes) ?></td>
 						                <?php if (isset($connectedUser)) {?>
 						                <td class="actions">
 						                <?php if ($connectedUser['role'] == 1) {?>
-						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?>
-						                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
+						                    <?= $this->Html->link('<i class="fa fa-pencil-square-o" style="font-size: 20px" aria-hidden="true"> </i>', ['action' => 'edit', $poll->id], ['escape' => false]) ?>
+						                    <span style="margin-left: 6px"></span>
+						                    <?= $this->Form->postLink('<i class="fa fa-trash" style="font-size: 20px" aria-hidden="true"> </i>', ['action' => 'delete', $poll->id], ['escape' => false, 'confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
 						                <?php }?>
 						                <?php if ($connectedUser['role'] == 2 && $okToVote[$poll->id] == true) {?>
-						                    <?= $this->Html->link(__('Voter'), ['controller'=> 'Votes','action' => 'add', $poll->id]) ?>
+						                    <?= $this->Html->link(__('Voter'), ['controller'=> 'Votes','action' => 'add', $poll->id], ['class' => 'btn btn-action', 'style' => 'background: #dff0d8; color: #6d986d; padding: 5px 15px 5px 15px;']) ?>
 						                <?php }?>
 						                <?php if ($connectedUser['role'] == 2 && $okToVote[$poll->id] == false) {?>
- 											<?= $this->Html->link(__('Voter'), ['controller' => 'Votes','action' => 'add', $poll->id],['target'=>'_blank', 'style' => 'color: grey; pointer-events : none; cursor : default;']) ?>
+ 											<?= $this->Html->link(__('Voter'), ['controller' => 'Votes','action' => 'add', $poll->id],['class' => 'btn btn-action', 'target'=>'_blank', 'style' => 'background: #e3dfdf;  padding: 5px 15px 5px 15px; color: #fff; pointer-events : none; cursor : default;']) ?>
  										<?php }?>
 						                </td>
 						                <?php }?>
