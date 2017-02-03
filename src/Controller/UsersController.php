@@ -79,7 +79,7 @@ class UsersController extends AppController
 			
 			if ($this->Users->save($user)) {
 				$this->getMailer('User')->send('welcome', [$user]);
-				$this->Flash->success(__('L\'utilisateur a été sauvegardé. Un email de bienvenue vient de lui être adressé'));
+				$this->Flash->success(__('L\'utilisateur a été sauvegardé. Un email de bienvenue vient de lui être adressé!'));
 				return $this->redirect(['action' =>'index']);
 			} else {
 				$this->Flash->error(__('L\'utilisateur n\'a pu être sauvegardé. Veuillez essayer à nouveau.'));
@@ -126,11 +126,19 @@ class UsersController extends AppController
 	public function delete($id = null)
 	{
 		$this->request->allowMethod(['post', 'delete']);
-		$user = $this->Users->get($id);
-		if ($this->Users->delete($user)) {
-			$this->Flash->success(__('L\'utilisateur a été supprimé.'));
-		} else {
-			$this->Flash->error(__('L\'utilisateur n\'a pu être supprimé. Veuillez essayer à nouveau.'));
+		$user = $this->Users->get($id, [
+				'contain' => ['Votes']
+		]);
+		
+		if($user->votes == null){
+			if ($this->Users->delete($user)) {
+				$this->Flash->success(__('L\'utilisateur a été supprimé.'));
+			} else {
+				$this->Flash->error(__('L\'utilisateur n\'a pu être supprimé. Veuillez essayer à nouveau.'));
+			}
+		}
+		else {
+			$this->Flash->error(__('L\'utilisateur ne peut être supprimé.'));
 		}
 		return $this->redirect(['action' => 'index']);
 	}

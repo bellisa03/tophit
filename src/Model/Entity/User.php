@@ -33,7 +33,8 @@ class User extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false
+        'id' => false,
+    	'vote' => true
     ];
 
     /**

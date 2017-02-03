@@ -33,9 +33,10 @@ class VotesController extends AppController
 	public function add($idPoll =  null){
 		
 		$manager = new PollManager();
+		$connectedUser = $this->Auth->user();
 		
 		//Test si l'utilisateur est autorisé à voter, dans le cas où l'utilisateur encoderait l'url directement dans le navigateur
-		if($manager->isAllowedToVote($idPoll, $this->Auth->user('id'))){
+		if($connectedUser['role']== 2 && $manager->isAllowedToVote($idPoll, $connectedUser['id'])){
 
 			$poll = PollManager::getPoll($idPoll);
 			$tracks = $manager->getListToVote($idPoll, $poll->musicstyleid);

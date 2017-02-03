@@ -37,6 +37,12 @@ class UsersTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        
+
+        $this->hasMany('Votes', [
+        		'foreignKey' => 'id_users',
+        		'bindingKey' => 'id'
+        ]);
     }
 
     /**
@@ -61,7 +67,8 @@ class UsersTable extends Table
 
         $validator
             ->email('email')
-            ->allowEmpty('email');
+            ->requirePresence('email', 'create')
+            ->notEmpty('email');
 
         $validator
             ->allowEmpty('lastname');

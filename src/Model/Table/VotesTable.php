@@ -45,10 +45,9 @@ class VotesTable extends Table
 //         ]);
  
         $this->hasMany('VoteTracks', [
-        		'foreignKey' => 'id_votes',
-        		'bindingKey' => 'id',
-        		'propertyName' => 'vote_track'
-        		
+        	'foreignKey' => 'id_votes',
+        	'bindingKey' => 'id',
+        	'propertyName' => 'vote_track'	
         ]);
     }
 

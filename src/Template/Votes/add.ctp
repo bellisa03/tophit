@@ -56,7 +56,7 @@
 					    <hr>
 					    
 					    <h2 class="thin text-left">Vote</h2>
-					    <p>Sélectionnez les titres de votre choix par ordre de préférence dans les différents menus déroulants.</p>
+					    <p>Sélectionnez les titres de votre choix, par ordre de préférence, dans les différents menus déroulants.</p>
 					    
 						<?= $this->Form->create($vote, ['name' => 'vote']) ?>
 						<div class="top-margin" style="font-weight: bold; color: #777;">

@@ -24,7 +24,7 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="thin text-center">Connexion à votre compte Top-H.it</h3>
-							<p class="text-center text-muted">(se connecter grâce à votre compte <?= $this->Html->link(__('Facebook'), ['controller' => 'Home', 'action' => 'index']) ?>) </p>
+							<p class="text-center text-muted">(Connectez-vous grâce à l'identifiant qui vous a été communiqué.) </p>
 							<hr>
 							<?= $this->Form->create()?>
 						
