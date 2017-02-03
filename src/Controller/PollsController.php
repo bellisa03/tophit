@@ -29,18 +29,14 @@ class PollsController extends AppController
 		}
 		$polls = PollManager::getPollsActive()->find('all');
 		
-		//$polls = $this->paginate($pollsActive);
-		
-		$this->set(compact('polls', 'okToVote', $this->paginate($polls)));
+		$this->set(compact('polls', 'okToVote'));
 		$this->set('_serialize', ['polls']);
 		
 	}
 	
 	public function archive() {
 	
-		$pollsInactive = PollManager::getPollsInactive()->find('all');
-	
-		$polls = $this->paginate($pollsInactive);
+		$polls = PollManager::getPollsInactive()->find('all');
 	
 		$this->set(compact('polls'));
 		$this->set('_serialize', ['polls']);

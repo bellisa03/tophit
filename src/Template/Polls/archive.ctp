@@ -27,14 +27,15 @@
 							<table class="table table-striped">
 						        <thead>
 						            <tr>
-						                <th><?= $this->Paginator->sort('Id') ?></th>
-						                <th><?= $this->Paginator->sort('Intitulé') ?></th>
-						                <th><?= $this->Paginator->sort('Catégorie') ?></th>
-						                <th><?= $this->Paginator->sort('Description') ?></th>
-						                <th><?= $this->Paginator->sort('Début') ?></th>
-						                <th><?= $this->Paginator->sort('Fin') ?></th>
+						                <th><?= __('Id') ?></th>
+						                <th><?= __('Intitulé') ?></th>
+						                <th><?= __('Catégorie') ?></th>
+						                <th><?= __('Description') ?></th>
+						                <th><?= __('Début') ?></th>
+						                <th><?= __('Fin') ?></th>
+						                <th><?= __('Votes') ?></th>
 						                <?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
-						                <th class="actions"><?= __('Actions') ?></th>
+						                <th class="actions"></th>
 						                <?php }?>
 						            </tr>
 						        </thead>
@@ -47,10 +48,13 @@
 						                <td><?= h($poll->description) ?></td>
 						                <td><?= h($poll->begindate) ?></td>
 						                <td><?= h($poll->enddate) ?></td>
+						                <td style="text-align:center"><?= $this->Number->format($poll->sumVotes) ?></td>
 						                <?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
 						                <td class="actions">
-						                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?>
-						                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
+						                    <?= $this->Html->link('<i class="fa fa-pencil-square-o" style="font-size: 20px" aria-hidden="true"> </i>', ['action' => 'edit', $poll->id], ['escape' => false]) ?>
+						                    <span style="margin-left: 6px"></span>
+						                    <?= $this->Form->postLink('<i class="fa fa-trash" style="font-size: 20px" aria-hidden="true"> </i>', ['action' => 'delete', $poll->id], 
+						                    		['escape' => false, 'confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
 						                </td>
 						                <?php }?>
 						            </tr>
@@ -78,13 +82,5 @@
 
 		</div>
 		
-		<div class="paginator">
-	        <ul class="pagination">
-	            <?= $this->Paginator->prev('< ' . __('précédent')) ?>
-	            <?= $this->Paginator->numbers() ?>
-	            <?= $this->Paginator->next(__('suivant') . ' >') ?>
-	        </ul>
-	        <p><?= $this->Paginator->counter() ?></p>
-    	</div>
 	</div>	<!-- /container -->
 	

@@ -27,12 +27,12 @@
 							<table class="table table-striped">
 						        <thead>
 						            <tr style="color: #1e1e4a;">
-						                <th><?= $this->Paginator->sort('Id') ?></th>
-						                <th><?= $this->Paginator->sort('Intitulé') ?></th>
-						                <th><?= $this->Paginator->sort('Catégorie') ?></th>
-						                <th><?= $this->Paginator->sort('Description') ?></th>
-						                <th><?= $this->Paginator->sort('Début') ?></th>
-						                <th><?= $this->Paginator->sort('Fin') ?></th>
+						                <th><?= __('Id') ?></th>
+						                <th><?= __('Intitulé') ?></th>
+						                <th><?= __('Catégorie') ?></th>
+						                <th><?= __('Description') ?></th>
+						                <th><?= __('Début') ?></th>
+						                <th><?= __('Fin') ?></th>
 						                <th><?= __('Votes') ?></th>
 						                <?php if (isset($connectedUser)) {?>
 						                <th class="actions"></th>
@@ -48,19 +48,23 @@
 						                <td><?= h($poll->description) ?></td>
 						                <td><?= h($poll->begindate) ?></td>
 						                <td><?= h($poll->enddate) ?></td>
-						                <td><?= $this->Number->format($poll->sumVotes) ?></td>
+						                <td style="text-align:center"><?= $this->Number->format($poll->sumVotes) ?></td>
 						                <?php if (isset($connectedUser)) {?>
 						                <td class="actions">
 						                <?php if ($connectedUser['role'] == 1) {?>
-						                    <?= $this->Html->link('<i class="fa fa-pencil-square-o" style="font-size: 20px" aria-hidden="true"> </i>', ['action' => 'edit', $poll->id], ['escape' => false]) ?>
+						                    <?= $this->Html->link('<i class="fa fa-pencil-square-o" style="font-size: 20px" aria-hidden="true"> </i>', 
+						                    		['action' => 'edit', $poll->id], ['escape' => false]) ?>
 						                    <span style="margin-left: 6px"></span>
-						                    <?= $this->Form->postLink('<i class="fa fa-trash" style="font-size: 20px" aria-hidden="true"> </i>', ['action' => 'delete', $poll->id], ['escape' => false, 'confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
+						                    <?= $this->Form->postLink('<i class="fa fa-trash" style="font-size: 20px" aria-hidden="true"> </i>', 
+						                    		['action' => 'delete', $poll->id], ['escape' => false, 'confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?>
 						                <?php }?>
 						                <?php if ($connectedUser['role'] == 2 && $okToVote[$poll->id] == true) {?>
-						                    <?= $this->Html->link(__('Voter'), ['controller'=> 'Votes','action' => 'add', $poll->id], ['class' => 'btn btn-action', 'style' => 'background: #dff0d8; color: #6d986d; padding: 5px 15px 5px 15px;']) ?>
+						                    <?= $this->Html->link(__('Voter'), ['controller'=> 'Votes','action' => 'add', $poll->id], 
+						                    		['class' => 'btn btn-action', 'style' => 'background: #dff0d8; color: #6d986d; padding: 5px 15px 5px 15px;']) ?>
 						                <?php }?>
 						                <?php if ($connectedUser['role'] == 2 && $okToVote[$poll->id] == false) {?>
- 											<?= $this->Html->link(__('Voter'), ['controller' => 'Votes','action' => 'add', $poll->id],['class' => 'btn btn-action', 'target'=>'_blank', 'style' => 'background: #e3dfdf;  padding: 5px 15px 5px 15px; color: #fff; pointer-events : none; cursor : default;']) ?>
+ 											<?= $this->Html->link(__('Voter'), ['controller' => 'Votes','action' => 'add', $poll->id],
+ 													['class' => 'btn btn-action', 'target'=>'_blank', 'style' => 'background: #e3dfdf;  padding: 5px 15px 5px 15px; color: #fff; pointer-events : none; cursor : default;']) ?>
  										<?php }?>
 						                </td>
 						                <?php }?>
@@ -87,13 +91,5 @@
 
 		</div>
 		
-		<div class="paginator">
-	        <ul class="pagination">
-	            <?= $this->Paginator->prev('< ' . __('précédent')) ?>
-	            <?= $this->Paginator->numbers() ?>
-	            <?= $this->Paginator->next(__('suivant') . ' >') ?>
-	        </ul>
-	        <p><?= $this->Paginator->counter('Page {{page}} de {{pages}}') ?></p>
-    	</div>
 	</div>	<!-- /container -->
 	
