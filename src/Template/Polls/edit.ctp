@@ -52,7 +52,7 @@
 						<?= $this->Form->create($poll) ?>
 							
 						<div class="top-margin">
-							<?= $this->Form->input('title', ['label' => 'Intitulé'])?>						
+							<?= $this->Form->input('title', ['label' => 'Intitulé*'])?>						
 						</div>
 						<div class="top-margin">
 							<?= $this->Form->label('Catégorie')?>
@@ -91,6 +91,7 @@
 							<?= $this->Form->button(__('Valider'), ['class' => 'btn btn-action', 'style' => 'background: #6a6aa5; color: white'])?>
 						</div>
     					<?= $this->Form->end() ?>
+    					<p> *Champ obligatoire </p>
     				</div>
     					
 				</div>

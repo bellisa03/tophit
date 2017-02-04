@@ -30,12 +30,12 @@
 						
 								<div class="top-margin">
 								<?php 
-									echo $this->Form->input('login', ['label' => 'Nom d\'utilisateur*'])
+									echo $this->Form->input('login', ['label' => 'Nom d\'utilisateur'])
 								?>						
 								</div>
 								<div class="top-margin">
 								<?php 
-									echo $this->Form->input('password', ['label' => 'Mot de passe*'])?>
+									echo $this->Form->input('password', ['label' => 'Mot de passe'])?>
 								</div>
 								<hr>
 						

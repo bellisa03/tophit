@@ -29,7 +29,7 @@
 						<?= $this->Form->create($user) ?>
 							
 						<div class="top-margin">
-							<?= $this->Form->input('login', ['label' => 'Nom d\'utilisateur'])?>						
+							<?= $this->Form->input('login', ['label' => 'Nom d\'utilisateur **'])?>						
 						</div>
 						<div class="top-margin">
 							<?= $this->Form->input('firstname', ['label' => 'Prénom'])?>
@@ -38,14 +38,14 @@
 							<?= $this->Form->input('lastname', ['label' => 'Nom'])?>
 						</div>
 						<div class="top-margin">
-							<?= $this->Form->input('email', ['label' => 'Email'])?>
+							<?= $this->Form->input('email', ['label' => 'Email **'])?>
 						</div>
 						<div class="top-margin">
-							<?= $this->Form->label('Rôle')?>
+							<?= $this->Form->label('Rôle *')?>
 							<?= $this->Form->select('role', $roles, ['empty' => '(choisissez)'])?>
 						</div>
 						<div class="top-margin">
-							<?= $this->Form->input('password', ['label' => 'Mot de passe', 'value' => ''])?>
+							<?= $this->Form->input('password', ['label' => 'Mot de passe *', 'value' => ''])?>
 						</div>
 						
 						<hr>
@@ -56,6 +56,8 @@
 							<?= $this->Form->button(__('Valider'), ['class' => 'btn btn-action', 'style' => 'background: #6a6aa5; color: white'])?>
 						</div>
     					<?= $this->Form->end() ?>
+    					<p> *  Champs obligatoires </p>
+    					<p> ** Champs obligatoires et uniques </p>
     				</div>	
 				</div>
 				
