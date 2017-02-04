@@ -63,7 +63,7 @@
 						                    		['class' => 'btn btn-action', 'style' => 'background: #dff0d8; color: #6d986d; padding: 5px 15px 5px 15px;']) ?>
 						                <?php }?>
 						                <?php if ($connectedUser['role'] == 2 && $okToVote[$poll->id] == false) {?>
- 											<?= $this->Html->link(__('Voter'), ['controller' => 'Votes','action' => 'add', $poll->id],
+ 											<?= $this->Html->link(__('Voter'), ['controller'=> 'Votes'],
  													['class' => 'btn btn-action', 'target'=>'_blank', 'style' => 'background: #e3dfdf;  padding: 5px 15px 5px 15px; color: #fff; pointer-events : none; cursor : default;']) ?>
  										<?php }?>
 						                </td>

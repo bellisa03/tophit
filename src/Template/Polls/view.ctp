@@ -111,7 +111,7 @@
                 <li role="presentation"><?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?></li>
                 <li role="presentation"><?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $poll->id], ['confirm' => __('Etes-vous sûr de vouloir supprimer le sondage # {0}?', $poll->id)]) ?></li>
                 	<?php }?>
-					<?php if (isset($connectedUser) && $connectedUser['role'] == 2 && $okToVote) {?>
+					<?php if (isset($connectedUser) && $connectedUser['role'] == 2 && $okToVote && $poll->status == 1) {?>
                 <li role="presentation"><?= $this->Html->link(__('Voter pour ce sondage'), ['controller'=> 'Votes','action' => 'add', $poll->id]) ?></li>
                 	<?php }?>
 				
