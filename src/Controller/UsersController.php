@@ -7,7 +7,6 @@ use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Mailer\Email;
 use Cake\Mailer\MailerAwareTrait;
-use App\Model\BU\UserManager;
 
 class UsersController extends AppController
 {
@@ -141,12 +140,6 @@ class UsersController extends AppController
 			$this->Flash->error(__('L\'utilisateur ne peut être supprimé.'));
 		}
 		return $this->redirect(['action' => 'index']);
-	}
-	
-	public function contact(){
-		
-		$this->getMailer('User')->send('contact');
-		//Email::deliver('isabelle.kinet79@gmail.com', 'Problème de connexion TopH.it', 'Message', ['from' => 'isabelle_kinet@yahoo.com']);
 	}
 	
 }

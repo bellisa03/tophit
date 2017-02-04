@@ -16,7 +16,7 @@
 					<li class= <?= (!empty($activeItem) && ($activeItem =='Polls') )?'active' :'inactive' ?>>
 						<?= $this->Html->link('Sondages', ['controller' => 'Polls','action' =>'index']) ?></li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='Contact') )?'active' :'inactive' ?>>
-						<?= $this->Html->link('Contact', ['controller' => 'Home','action' =>'contact']) ?></li>
+						<?= $this->Html->link('Contact', ['controller' => 'Contact','action' =>'add']) ?></li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='CONNEXION') )?'active' :'inactive' ?>>
 						<?php if (isset($connectedUser) && $connectedUser != null) {?>
 							<?= $this->Html->link('Bonjour ' . $connectedUser['login']. ' - DECONNEXION', ['controller' => 'Users','action' =>'logout'], ['class' => 'btn']) ?>

@@ -19,10 +19,14 @@ class UserMailer extends Mailer
 		->template('welcome', 'default');
 	}
 
-	public function contact()
+	public function contact($data)
 	{
 		$this
-		->to('kinet.isa@gmail.com')
-		->subject('Problème de connexion');
+		->transport('gmail')
+		->emailFormat('html')
+		->to(CONTACT)
+		->subject('Formulaire de contact TopH.it')
+		->viewVars(['name' => $data['name'], 'email' => $data['email'], 'body' => $data['body']])
+		->template('contact', 'default');
 	}
 }

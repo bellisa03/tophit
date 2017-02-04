@@ -13,6 +13,8 @@ class PollsController extends AppController
 
 	public function beforeFilter(Event $event){
 	
+		parent::beforeFilter($event);
+		
 		$this->Auth->allow(['index', 'view', 'archive']);
 	
 		if ($this->Auth->user() != null){
