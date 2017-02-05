@@ -14,7 +14,7 @@ class ContactController extends AppController
 		
 		parent::beforeFilter($event);
 		
-		$this->Auth->allow(['contact']);
+		$this->Auth->allow(['add']);
 	
 		if ($this->Auth->user() != null){
 			$connectedUser = $this->Auth->user();
