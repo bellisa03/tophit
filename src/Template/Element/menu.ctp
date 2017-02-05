@@ -19,7 +19,11 @@
 						<?= $this->Html->link('Contact', ['controller' => 'Contact','action' =>'add']) ?></li>
 					<li class= <?= (!empty($activeItem) && ($activeItem =='CONNEXION') )?'active' :'inactive' ?>>
 						<?php if (isset($connectedUser) && $connectedUser != null) {?>
-							<?= $this->Html->link('Bonjour ' . $connectedUser['login']. ' - DECONNEXION', ['controller' => 'Users','action' =>'logout'], ['class' => 'btn']) ?>
+						<li class="dropdown, <?= (!empty($activeItem) && ($activeItem =='Users') )?'active' :'inactive' ?>">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><?=' ' . $connectedUser['login'] ?> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><?= $this->Html->link('Déconnexion', ['controller' => 'Users','action' =>'logout']) ?></li>
+						</ul>
 						<?php } else {?>
 							<?= $this->Html->link('CONNEXION', ['controller' => 'Users','action' =>'login'], ['class' => 'btn']) ?>
 						<?php }?>
