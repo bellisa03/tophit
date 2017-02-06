@@ -42,7 +42,7 @@ class VotesController extends AppController
 			//Test si l'utilisateur est autorisé à voter, dans le cas où l'utilisateur encoderait l'url directement dans le navigateur
 			if($connectedUser['role']== 2 && $manager->isAllowedToVote($idPoll, $connectedUser['id'])){
 								
-				$tracks = $manager->getListToVote($idPoll, $poll->musicstyleid);
+				$tracks = $manager->getListToVote($poll->musicstyleid);
 
 				$votes = TableRegistry::get('Votes');
 				$vote = $votes->newEntity($this->request->data(), [

@@ -4,13 +4,10 @@ namespace App\Model\BU;
 use SoapClient;
 use App\Model\Entity\MusicGenre;
 use App\Model\Entity\MusicTrack;
-use Cake\ORM\TableRegistry;
-
 
 class MusicServiceAgent
 {	
-	private $address = 'http://www.it4today.com/chinook/ChinookService.svc?wsdl';
-	//adresse peut-être dans une constante
+	private $address = WEBSERVICE;
 	private $soapClient;
 	
 	public function __construct(){
@@ -28,19 +25,6 @@ class MusicServiceAgent
 		}
 	
 		return $musicGenres;
-	}
-	
-	public function getMusicGenreName($id){
-		$resultsWebService = $this->soapClient->GetMusicGenres();
-		$genreResults = $resultsWebService->GetMusicGenresResult->MusicGenre;
-		
-		foreach ($genreResults as $genreResult){
-			if($genreResult->GenreID == $id){
-				return $genreResult->Name;
-			}
-		}
-		
-		return null;
 	}
 	
 	public function getMusicGenre($id){
@@ -89,7 +73,5 @@ class MusicServiceAgent
 		}
 		return $musicTracks;
 	}
-	
-	
 }
 

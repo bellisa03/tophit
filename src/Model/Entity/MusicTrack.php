@@ -13,3 +13,4 @@ class MusicTrack extends Entity
 	public $trackTitle;
 	public $ranking;
 }
+

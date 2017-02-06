@@ -20,6 +20,7 @@ use Cake\Event\Event;
 define('ADMIN', 'Administrateur');
 define('USER', 'Utilisateur');
 define('CONTACT', 'kinet.isa@gmail.com');
+define('WEBSERVICE', 'http://www.it4today.com/chinook/ChinookService.svc?wsdl');
 
 /**
  * Application Controller

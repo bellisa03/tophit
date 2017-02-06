@@ -9,7 +9,6 @@ namespace App\Model\Entity;
  */
 class MusicGenre
 {
-
 	private $genreId;
 	private $name;
 
@@ -39,6 +38,6 @@ class MusicGenre
 	{
 		return $this->name;
 	}
-
-
 }
+
+

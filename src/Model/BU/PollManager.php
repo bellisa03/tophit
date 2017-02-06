@@ -157,13 +157,11 @@ class PollManager
     	return $musicTracks;
     }
     
-    public function getListToVote($pollId, $pollmusicstyleid){
-    	 
-    	$votetracks = TableRegistry::get('VoteTracks')->find('all', [
-    			'contain' => ['Votes'],
-    			'conditions' => ['Votes.id_polls ='=> $pollId]
-    	]);
-    	 
+    /*
+     * Fonction qui génère un tableau pour la vue Votes/add.ctp qui sera utilisé pour le dropdown du select input.
+     */
+    public function getListToVote($pollmusicstyleid){
+
     	$musicAgent = new MusicServiceAgent();
     	$musicTracks = $musicAgent->getMusicTracksList($pollmusicstyleid);
     	
