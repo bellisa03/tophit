@@ -2,7 +2,6 @@
 namespace App\Model\BU;
 
 use Cake\ORM\TableRegistry;
-use Cake\I18n\Date;
 
 class PollManager
 {
