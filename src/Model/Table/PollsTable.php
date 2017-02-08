@@ -31,6 +31,11 @@ class PollsTable extends Table
         $this->table('polls');
         $this->displayField('title');
         $this->primaryKey('id');
+        
+        $this->hasMany('Votes', [
+        		'foreignKey' => 'id_polls',
+        		'bindingKey' => 'id'
+        ]);
     }
 
     /**

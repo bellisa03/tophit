@@ -80,7 +80,7 @@
 			<?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
 				<li role="presentation"><?= $this->Html->link(__('Nouveau Sondage'), ['action' => 'add']) ?></li>
 			<?php }?>
-				<li role="presentation"><?= $this->Html->link(__('Liste des sondages clôturés'), ['action' => 'archive']) ?></li>
+				<li role="presentation"><?= $this->Html->link(__('Liste des sondages clôturés ou inactifs'), ['action' => 'archive']) ?></li>
     		</ul>
 		</nav>
 		<p><?= __('Cliquez sur l\'intitulé du sondage pour consulter le détail de celui-ci') ?></p>

@@ -117,12 +117,21 @@ class PollsController extends AppController
 	public function delete($id = null)
 	{
 		$this->request->allowMethod(['post', 'delete']);
-		$poll = $this->Polls->get($id);
-		if ($this->Polls->delete($poll)) {
-			$this->Flash->success(__('Le sondage a été supprimé.'));
-		} else {
-			$this->Flash->error(__('Le sondage n\'a pu être supprimé. Veuillez essayer à nouveau.'));
+		$poll = $this->Polls->get($id, [
+				'contain' => ['Votes']				
+		]);
+		
+		if($poll->votes == null){
+			if ($this->Polls->delete($poll)) {
+				$this->Flash->success(__('Le sondage a été supprimé.'));
+			} else {
+				$this->Flash->error(__('Le sondage n\'a pu être supprimé. Veuillez essayer à nouveau.'));
+			}
 		}
+		else {
+			$this->Flash->error(__('Le sondage ne peut être supprimé.'));
+		}
+		
 		return $this->redirect(['action' => 'index']);
 	}
 	

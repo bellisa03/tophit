@@ -105,7 +105,7 @@
 					<?php if ($poll->status === 1) {?>
 				<li role="presentation"><?= $this->Html->link(__('Index des sondages en cours'), ['action' => 'index']) ?></li>
 					<?php } else {?>
-				<li role="presentation"><?= $this->Html->link(__('Index des sondages clôturés'), ['action' => 'archive']) ?></li>
+				<li role="presentation"><?= $this->Html->link(__('Index des sondages clôturés ou inactifs'), ['action' => 'archive']) ?></li>
 					<?php }?>
 					<?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
                 <li role="presentation"><?= $this->Html->link(__('Modifier'), ['action' => 'edit', $poll->id]) ?></li>

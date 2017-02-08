@@ -18,7 +18,7 @@
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Sondages</h1>
+					<h1 class="page-title">Sondages inactifs ou clôturés</h1>
 				</header>
 				
 				<div class="col-md-12 col-md-offset-0 col-sm-2 col-sm-offset-4">
