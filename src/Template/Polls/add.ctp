@@ -16,12 +16,20 @@
             format: 'DD-MM-YYYY',
             locale: 'fr',
             minDate: moment('2016-09-01'),
+            defaultDate: moment(),
             ignoreReadonly: true
         });
         $('#datetimepicker2').datetimepicker({
             format: 'DD-MM-YYYY',
             locale: 'fr',
-            ignoreReadonly: true
+            ignoreReadonly: true,
+            useCurrent: false
+        });
+        $("#datetimepicker1").on("dp.change", function (e) {
+            $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker2").on("dp.change", function (e) {
+            $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
         });
     });
     </script>
