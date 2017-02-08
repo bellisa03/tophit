@@ -15,7 +15,7 @@
         $('#datetimepicker1').datetimepicker({
             format: 'DD-MM-YYYY',
             locale: 'fr',
-            minDate: moment('2016-09-01'),
+            minDate: moment(),
             defaultDate: moment(),
             ignoreReadonly: true
         });
