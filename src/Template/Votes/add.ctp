@@ -81,6 +81,7 @@
 						
 						<br>
 						<div class="col-lg-12 text-right">
+							<?= $this->Html->link('Annuler', ['controller' => 'Polls', 'action' =>'index'], ['class' => 'btn btn-action', 'style' => 'background: #888; color: white']) ?>
 							<?= $this->Form->button(__('Valider'), ['class' => 'btn btn-action', 'style' => 'background: #6a6aa5; color: white'])?>
 						</div>
     					<?= $this->Form->end() ?>
