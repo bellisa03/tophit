@@ -20,11 +20,12 @@ class VotesController extends AppController
 	
 	public function isAuthorized($user)
 	{
-		if ($this->request->action === 'add')
-		{
-			return true;
+		if (isset($user['role']) && $user['role'] === 2){
+			if ($this->request->action === 'add')
+			{
+				return true;
+			}
 		}
-		
 		parent::isAuthorized($user);
 	}
 	

@@ -27,10 +27,6 @@ class UsersController extends AppController
 			$connectedUser = $this->Auth->user();
 			$this->set('connectedUser', $connectedUser);
 		}
-		
-// 		if(isset($connectedUser) && $connectedUser['role'] === 2){
-// 			$this->Auth->deny(['index', 'add', 'edit', 'delete']);
-// 		}
 	}
 
 	public function index()
