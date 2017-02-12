@@ -19,8 +19,7 @@ class PollsController extends AppController
 	
 		if ($this->Auth->user() != null){
 			$connectedUser = $this->Auth->user();
-			$this->set('connectedUser', $connectedUser);
-				
+			$this->set('connectedUser', $connectedUser);			
 		}
 	}
 	
@@ -29,11 +28,11 @@ class PollsController extends AppController
 		if ($this->Auth->user('role') == 2){
 			$okToVote = PollManager::getPollsToVoteFor($this->Auth->user('id'));
 		}
+		
 		$polls = PollManager::getPollsActive()->find('all');
 		
 		$this->set(compact('polls', 'okToVote'));
 		$this->set('_serialize', ['polls']);
-		
 	}
 	
 	public function archive() {
@@ -42,10 +41,10 @@ class PollsController extends AppController
 	
 		$this->set(compact('polls'));
 		$this->set('_serialize', ['polls']);
-	
 	}
 	
 	public function view($id = null) {
+		
 		$poll = PollManager::getPoll($id);
 			
 		$manager = new PollManager();
@@ -54,7 +53,6 @@ class PollsController extends AppController
 		
 		$this->set(compact('poll', 'tracks', 'okToVote'));
 		$this->set('_serialize', ['poll']);
-		
 	}
 	
 	public function add(){
@@ -110,13 +108,13 @@ class PollsController extends AppController
 		
 		$this->set(compact('poll', 'genres'));
 		$this->set('_serialize', ['poll']);
-		
 	}
 	
 
 	public function delete($id = null)
 	{
 		$this->request->allowMethod(['post', 'delete']);
+		
 		$poll = $this->Polls->get($id, [
 				'contain' => ['Votes']				
 		]);

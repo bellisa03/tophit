@@ -32,11 +32,12 @@ define('WEBSERVICE', 'http://www.it4today.com/chinook/ChinookService.svc?wsdl');
  */
 class AppController extends Controller
 {
+	
 	public function beforeFilter(Event $event)
 	{
-		parent::beforeFilter($event);
-		
+		parent::beforeFilter($event);	
 	}
+	
 	/*
 	 * Déclaration d'une variable publique qui fait référence à mon template d'aide à la configuration des formulaires.
 	 * le fichier se trouve dans config/my_template.php
@@ -81,7 +82,6 @@ class AppController extends Controller
         ]);
     }
 
-
     /**
      * Before render callback.
      *
@@ -97,7 +97,6 @@ class AppController extends Controller
         }
     }
     
-
     public function isAuthorized($user)
     {
     	//rôle 1 = Admin, rôle 2 = Utilisateur

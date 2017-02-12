@@ -5,7 +5,14 @@ use Cake\ORM\TableRegistry;
 
 class PollManager
 {
-    
+    /**
+     * Fonction qui retourne la liste des sondages actifs.
+     * Grâce à des propriétés virtuelles, elle retourne: l'ID du genre musical et son nom, 
+     * la somme totale des votes comptabilisés pour chaque sondage.
+     * Retourne un tableau d'objets de type poll.
+     * 
+     * @return \Cake\ORM\Query
+     */
     public static function getPollsActive(){
     	
     	$polls = TableRegistry::get('Polls')->find('all', ['order' =>['begindate' => 'desc']])
@@ -32,6 +39,14 @@ class PollManager
     	return $polls;
     }
     
+    /**
+     * Fonction qui retourne la liste des sondages inactifs.
+     * Grâce à des propriétés virtuelles, elle retourne: l'ID du genre musical et son nom, 
+     * la somme totale des votes comptabilisés pour chaque sondage.
+     * Retourne un tableau d'objets de type poll.
+     * 
+     * @return \Cake\ORM\Query
+     */
     public static function getPollsInactive(){
     	 
     	$polls = TableRegistry::get('Polls')->find('all', ['order' =>['begindate' => 'desc']])
@@ -57,32 +72,15 @@ class PollManager
     	 
     	return $polls;
     }
-    
-    public static function getPollsToVoteFor($userId){
-    	 
-    	$polls = TableRegistry::get('Polls')->find('all');
-    	 
-    	$manager = new PollManager();
-    	$okToVote = [];
-    	foreach ($polls as $poll){
-    		if($manager->isAllowedToVote($poll->id, $userId)){
-    			$okToVote[$poll->id] = true;
-    		}
-    		else{
-    			$okToVote[$poll->id] = false;
-    		}
-    		
-    	}
-    	 
-    	return $okToVote;
-    }
-    
-    /*
+
+    /**
      * Fonction qui retourne un sondage en particulier.
-     * Grâce à des propriétés virtuelles, elle retourne:
-     * - l'ID du genre musical et son nom.
-     * - la somme totale des votes comptabilisés pour ce sondage.
-     * Prend en paramètre l'id du sondage et retourne une variable $poll.
+     * Grâce à des propriétés virtuelles, elle retourne: l'ID du genre musical et son nom, 
+     * la somme totale des votes comptabilisés pour ce sondage.
+     * Prend en paramètre l'id du sondage et retourne une variable de type poll.
+     * 
+     * @param int $id
+     * @return \Cake\Datasource\EntityInterface
      */
     public static function getPoll($id = null){
     	 
@@ -104,27 +102,13 @@ class PollManager
     	return $poll;
     }
     
-    /*
-     * Fonction qui permet de faire un tri sur un tableau d'objet indicé.
-     * Prend en paramètre le tableau et la propriété de l'objet sur laquelle le tri va être fait.
-     * retourne via la fonction array_multisort le tableau trié par ordre descendant.
-     */
-    public static function sortArrayOfArray(&$array, $subfield)
-    {
-    	$sortarray = array();
-    	foreach ($array as $key => $row)
-    	{
-   			$sortarray[$key] = $row->$subfield;   		
-    	}
-    	
-    	return array_multisort($sortarray, SORT_DESC, $array);
-    }
-    
-    
-    
-    /*
+    /**
      * Fonction qui retourne la liste des titres d'un sondage particulier triés en fonction d'une pondération des votes sous forme de tableau.
      * Prend en paramètre l'id du sondage et de la catégorie.
+     * 
+     * @param int $pollId
+     * @param int $pollmusicstyleid
+     * @return \App\Model\Entity\MusicTrack[]
      */
     public function getVotesRanking($pollId, $pollmusicstyleid){
     	
@@ -133,7 +117,6 @@ class PollManager
     			'conditions' => ['Votes.id_polls ='=> $pollId]    	
     	]);
     
-    	
     	$musicAgent = new MusicServiceAgent();
     	$musicTracks = $musicAgent->getMusicTracksList($pollmusicstyleid);
     	if($votetracks && $musicTracks != null){
@@ -155,9 +138,33 @@ class PollManager
 		
     	return $musicTracks;
     }
+
+    /**
+     * Fonction qui permet de faire un tri sur un tableau d'objet indicé.
+     * Prend en paramètre le tableau et la propriété de l'objet sur laquelle le tri va être fait.
+     * retourne via la fonction array_multisort le tableau trié par ordre descendant.
+     *
+     * @param unknown $array
+     * @param unknown $subfield
+     * @return unknown $array
+     */
+    public static function sortArrayOfArray(&$array, $subfield)
+    {
+    	$sortarray = array();
+    	foreach ($array as $key => $row)
+    	{
+    		$sortarray[$key] = $row->$subfield;
+    	}
+    	 
+    	return array_multisort($sortarray, SORT_DESC, $array);
+    }
     
-    /*
-     * Fonction qui génère un tableau pour la vue Votes/add.ctp qui sera utilisé pour le dropdown du select input.
+    /**
+     * Fonction qui génère un tableau contenant le listing des titres de musiques d'un certain genre musical
+     * sour forme de string (mis en forme pour un dropdown select)
+     * 
+     * @param int $pollmusicstyleid
+     * @return string[]
      */
     public function getListToVote($pollmusicstyleid){
 
@@ -172,6 +179,13 @@ class PollManager
     	return $tracks;
     }
     
+    /**
+     * Permet d'identifier si un utilisateur est autorisé à voter pour un sondage.
+     * 
+     * @param int $pollId
+     * @param int $userID
+     * @return boolean
+     */
     public function isAllowedToVote($pollId, $userID){
     
     	$votes = TableRegistry::get('Votes')->find('all')
@@ -182,11 +196,34 @@ class PollManager
     			'Votes.id_users' => $userID,
     		]);
     		
-    
     	foreach ($votes as $vote){
     		if($vote) return false;
-    		}
+    	}
     	
     	return true;
+    }
+    
+    /**
+     * Permet d'identifier pour quel(s) sondage(s) un utilisateur est autorisé à voter.
+     *
+     * @param int $userId
+     * @return boolean[]
+     */
+    public static function getPollsToVoteFor($userId){
+    
+    	$polls = TableRegistry::get('Polls')->find('all');
+    
+    	$manager = new PollManager();
+    	$okToVote = [];
+    	foreach ($polls as $poll){
+    		if($manager->isAllowedToVote($poll->id, $userId)){
+    			$okToVote[$poll->id] = true;
+    		}
+    		else{
+    			$okToVote[$poll->id] = false;
+    		}
+    	}
+    	
+    	return $okToVote;
     }
 }

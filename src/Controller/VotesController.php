@@ -18,14 +18,16 @@ class VotesController extends AppController
 		}
 	}
 	
-	public function isAuthorized($user)
-	{
+	public function isAuthorized($user){
+		
 		if (isset($user['role']) && $user['role'] === 2){
+			
 			if ($this->request->action === 'add')
 			{
 				return true;
 			}
 		}
+		
 		parent::isAuthorized($user);
 	}
 	
@@ -58,16 +60,20 @@ class VotesController extends AppController
 					$vote->id_polls = $data['id_polls'];
 					$vote->id_users = $data['id_users'];
 			
-					// la variable de type array $trackid va permettre de pouvoir faire un tri sur les valeurs distinctes fournies par l'utilisateur lors de son vote
+					// la variable de type array $trackid va permettre de pouvoir faire un traitement 
+					// sur les valeurs distinctes fournies par l'utilisateur lors de son vote
 					$trackid = [];
-			
+					
+					// la variable selection permet de stocker les vote_tracks de façon provisoire,
+					// avant de les soumettre à l'entité vote pour la sauvegarde.
+					$selection = [];
+					
 					foreach ($data['vote_tracks'] as $data_vote_track){
 						$vote_track = $this->Votes->VoteTracks->newEntity();
 						$vote_track->trackid = $data_vote_track['trackid'];
 						$trackid[] = $data_vote_track['trackid'];
 						$vote_track->trackorder = $data_vote_track['trackorder'];
 						$selection[] = $vote_track;
-							
 					}
 			
 					// je crée un tableau ne contenant plus que les valeurs distinctes et je vérifie ensuite que sa longueur est bien égale à 5.
