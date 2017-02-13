@@ -32,6 +32,7 @@
       });
     </script>
 <?= $this->end() ?>
+
 <header id="head" class="secondary"></header>
 	
 <!-- container -->
@@ -106,4 +107,5 @@
 			<!-- /Article -->
 
 		</div>
-	</div>	<!-- /container -->
+	</div>	
+	<!-- /container -->

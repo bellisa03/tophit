@@ -4,8 +4,6 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 use Cake\Auth\DefaultPasswordHasher;
 
-
-
 /**
  * User Entity
  *
@@ -62,11 +60,7 @@ class User extends Entity
     	else{
     		return 'Rôle indéfini';
     	}
-    	
     }
-    
-    //Champ virtuel
-    public $roleName;
     
     protected function _setPassword($value)
     {

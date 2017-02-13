@@ -28,7 +28,6 @@ class MusicGenre
 		return $this->genreId;
 	}
 
-
 	public function setName($name)
 	{
 		$this->name= $name;

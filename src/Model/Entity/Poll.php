@@ -17,7 +17,6 @@ use App\Model\BU\MusicServiceAgent;
  */
 class Poll extends Entity
 {
-
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *

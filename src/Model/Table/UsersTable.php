@@ -36,7 +36,6 @@ class UsersTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
-        
 
         $this->hasMany('Votes', [
         		'foreignKey' => 'id_users',
@@ -100,6 +99,4 @@ class UsersTable extends Table
 
         return $rules;
     }
-    
-    
 }

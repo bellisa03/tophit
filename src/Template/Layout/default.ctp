@@ -14,7 +14,6 @@
 	<?= $this->Html->css('bootstrap.min.css')?>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 	
-	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<?= $this->Html->script('headroom.min.js')?>
@@ -38,7 +37,7 @@
 
 <body class="home">
 	<!-- Fixed navbar -->
-	<div class="navbar navbar-inverse navbar-fixed-top headroom">
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" style= "background-color: #1e1e4a">
 		<div class="container">
 			<div class="navbar-header" style="background-color: #6a6aa5">
 				<!-- Button for smallest screens -->
@@ -50,7 +49,6 @@
 		</div>
 	</div> 
 	<!-- /.navbar -->
-	
 	
 	<?= $this->fetch('content') ?>
 	<?= $this->Flash->render() ?>
@@ -81,7 +79,6 @@
 							<p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
 						</div>
 					</div>
-
 				</div> <!-- /row of widgets -->
 			</div>
 		</div>
@@ -101,8 +98,6 @@
 		</div>
 
 	</footer>	
-		
-	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	
 </body>
 </html>

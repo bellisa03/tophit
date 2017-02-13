@@ -11,6 +11,7 @@ use Cake\Mailer\MailerAwareTrait;
 class ContactForm extends Form{
 	
 	use MailerAwareTrait;
+	
 	protected function _buildSchema(Schema $schema){
 		return $schema->addField('name', 'string')
 		->addField('email', ['type' => 'string'])

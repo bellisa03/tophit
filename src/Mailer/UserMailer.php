@@ -15,7 +15,7 @@ class UserMailer extends Mailer
 		->to($user['email'])
 		->subject(sprintf('Bienvenue sur la plateforme TopH.it, %s', $user['login']))
 		->viewVars(['login' => $user['login'], 'help' => CONTACT])
-		//->template: d'abord le template, ensuite le layout
+		// dans la propriété template: on renseigne d'abord le template, ensuite le layout
 		->template('welcome', 'default');
 	}
 

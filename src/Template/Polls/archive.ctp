@@ -65,16 +65,17 @@
 						</div>
 					</div>
 		
-		<nav role="navigation" style="padding-bottom: 30px">
-			<ul class="nav nav-pills">
-			<?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
-				<li role="presentation"><?= $this->Html->link(__('Nouveau Sondage'), ['action' => 'add']) ?></li>
-			<?php }?>
-				<li role="presentation"><?= $this->Html->link(__('Liste des sondages en cours'), ['action' => 'index']) ?></li>
-    		</ul>
-		</nav>
-		 
-		<p><?= __('Cliquez sur l\'intitulé du sondage pour consulter le détail de celui-ci') ?></p>
+					<nav role="navigation" style="padding-bottom: 30px">
+						<ul class="nav nav-pills">
+						<?php if (isset($connectedUser) && $connectedUser['role'] == 1) {?>
+							<li role="presentation"><?= $this->Html->link(__('Nouveau Sondage'), ['action' => 'add']) ?></li>
+						<?php }?>
+							<li role="presentation"><?= $this->Html->link(__('Liste des sondages en cours'), ['action' => 'index']) ?></li>
+			    		</ul>
+					</nav>
+					 
+					<p><?= __('Cliquez sur l\'intitulé du sondage pour consulter le détail de celui-ci') ?></p>
+				
 				</div>
 				
 			</article>
@@ -82,5 +83,6 @@
 
 		</div>
 		
-	</div>	<!-- /container -->
+	</div>	
+	<!-- /container -->
 	

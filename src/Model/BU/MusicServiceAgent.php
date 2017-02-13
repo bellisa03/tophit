@@ -14,19 +14,33 @@ class MusicServiceAgent
 		$this->soapClient = new \SoapClient($this->address); 
 	}	
 
+	/**
+	 * Fonction qui retourne un tableau des genres musicaux du webservice
+	 * 
+	 * @return array[]|NULL
+	 */
 	public function getMusicGenresList() {
 	
 		$resultsWebService = $this->soapClient->GetMusicGenres();
 		$genreResults = $resultsWebService->GetMusicGenresResult->MusicGenre;
 	
-		$musicGenres = array();
-		foreach ($genreResults as $genreResult) {
-			$musicGenres[$genreResult->GenreId] = $genreResult->Name;
+		if($genreResults != null){
+			$musicGenres = array();
+			foreach ($genreResults as $genreResult) {
+				$musicGenres[$genreResult->GenreId] = $genreResult->Name;
+			}
+			
+			return $musicGenres;
 		}
-	
-		return $musicGenres;
+		return null;
 	}
 	
+	/**
+	 * Fonction qui retourne un genre musical du webservice en fonction de son identifiant numérique
+	 * 
+	 * @param int $id
+	 * @return \App\Model\Entity\MusicGenre|NULL
+	 */
 	public function getMusicGenre($id){
 		$resultsWebService = $this->soapClient->GetMusicGenres();
 		$genreResults = $resultsWebService->GetMusicGenresResult->MusicGenre;
@@ -37,41 +51,59 @@ class MusicServiceAgent
 				return $musicGenre;
 			}
 		}
-		
 		return null;
 	}
 	
+	/**
+	 * Fonction qui retourne la liste complète des titres liés à un genre musical spécifique du webservice
+	 * 
+	 * @param int $genreId
+	 * @return \App\Model\Entity\MusicTrack[]|NULL
+	 */
 	public function getFullMusicTracksList($genreId){
 		$resultsWebService = $this->soapClient->GetMusicGenreTracks(["genreID" => $genreId]);
 		$trackResults = $resultsWebService->GetMusicGenreTracksResult->MusicTrack;
 		
-		$musicTracks = array();
-		foreach ($trackResults as $trackResult) {
-			$musicTrack = new MusicTrack();
-			$musicTrack->albumTitle = $trackResult->AlbumTitle;
-			$musicTrack->artistName = $trackResult->ArtistName;
-			$musicTrack->genreID = $trackResult->GenreId;
-			$musicTrack->milliseconds = $trackResult->Milliseconds;
-			$musicTrack->trackID = $trackResult->TrackId;
-			$musicTrack->trackTitle = $trackResult->TrackTitle;
-			$musicTracks[] = $musicTrack;
+		if($trackResults != null){
+			$musicTracks = array();
+			foreach ($trackResults as $trackResult) {
+				$musicTrack = new MusicTrack();
+				$musicTrack->albumTitle = $trackResult->AlbumTitle;
+				$musicTrack->artistName = $trackResult->ArtistName;
+				$musicTrack->genreID = $trackResult->GenreId;
+				$musicTrack->milliseconds = $trackResult->Milliseconds;
+				$musicTrack->trackID = $trackResult->TrackId;
+				$musicTrack->trackTitle = $trackResult->TrackTitle;
+				$musicTracks[] = $musicTrack;
+			}
+			return $musicTracks;
 		}
-		return $musicTracks;
+		return null;
 	}
 	
+	/**
+	 * Fonction qui retourne la liste complète des titres liés à un genre musical spécifique du webservice
+	 * (Adaptée aux besoins actuels de la plateforme topH.it)
+	 * 
+	 * @param int $genreId
+	 * @return \App\Model\Entity\MusicTrack[]|NULL
+	 */
 	public function getMusicTracksList($genreId){
 		$resultsWebService = $this->soapClient->GetMusicGenreTracks(["genreID" => $genreId]);
 		$trackResults = $resultsWebService->GetMusicGenreTracksResult->MusicTrack;
 	
-		$musicTracks = array();
-		foreach ($trackResults as $trackResult) {
-			$musicTrack = new MusicTrack();
-			$musicTrack->artistName = $trackResult->ArtistName;
-			$musicTrack->trackID = $trackResult->TrackId;
-			$musicTrack->trackTitle = $trackResult->TrackTitle;
-			$musicTracks[] = $musicTrack;
+		if($trackResults != null){
+			$musicTracks = array();
+			foreach ($trackResults as $trackResult) {
+				$musicTrack = new MusicTrack();
+				$musicTrack->artistName = $trackResult->ArtistName;
+				$musicTrack->trackID = $trackResult->TrackId;
+				$musicTrack->trackTitle = $trackResult->TrackTitle;
+				$musicTracks[] = $musicTrack;
+			}
+			return $musicTracks;
 		}
-		return $musicTracks;
+		return null;
 	}
 }
 

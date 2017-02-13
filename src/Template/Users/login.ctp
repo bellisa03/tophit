@@ -5,59 +5,61 @@
 <header id="head" class="secondary"></header>
 	
 <!-- container -->
-	<div class="container">
+<div class="container">
 
-		<ol class="breadcrumb">
-			<li><?= $this->Html->link(__('Accueil'), ['controller' => 'Home', 'action' => 'index']) ?></li>
-			<li class="active"><?= __('Authentification') ?></li>
-		</ol>
+	<ol class="breadcrumb">
+		<li><?= $this->Html->link(__('Accueil'), ['controller' => 'Home', 'action' => 'index']) ?></li>
+		<li class="active"><?= __('Authentification') ?></li>
+	</ol>
 
-		<div class="row">
+	<div class="row">
+		
+		<!-- Article main content -->
+		<article class="col-xs-12 maincontent">
+			<header class="page-header">
+				<h1 class="page-title">Connexion</h1>
+			</header>
 			
-			<!-- Article main content -->
-			<article class="col-xs-12 maincontent">
-				<header class="page-header">
-					<h1 class="page-title">Connexion</h1>
-				</header>
-				
-				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<h3 class="thin text-center">Connexion à votre compte Top-H.it</h3>
-							<p class="text-center text-muted">(Connectez-vous grâce à l'identifiant qui vous a été communiqué.) </p>
+			<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h3 class="thin text-center">Connexion à votre compte Top-H.it</h3>
+						<p class="text-center text-muted">(Connectez-vous grâce à l'identifiant qui vous a été communiqué.) </p>
+						<hr>
+						<?= $this->Form->create()?>
+					
+							<div class="top-margin">
+							<?php 
+								echo $this->Form->input('login', ['label' => 'Nom d\'utilisateur'])
+							?>						
+							</div>
+							<div class="top-margin">
+							<?php 
+								echo $this->Form->input('password', ['label' => 'Mot de passe'])?>
+							</div>
 							<hr>
-							<?= $this->Form->create()?>
+					
+							<div class="row">
+								<div class="col-lg-8">
+									<b><?= $this->Html->link(__('Problème de connexion'), ['controller' => 'contact', 'action' => 'add']) ?></b>
+								</div>
+								<div class="col-lg-4 text-right">
+									<?= $this->Form->button(__('Connexion'), ['class' => 'btn btn-action', 'style' => 'background: #1e1e4a;'])?>
+								</div>
+							</div>
 						
-								<div class="top-margin">
-								<?php 
-									echo $this->Form->input('login', ['label' => 'Nom d\'utilisateur'])
-								?>						
-								</div>
-								<div class="top-margin">
-								<?php 
-									echo $this->Form->input('password', ['label' => 'Mot de passe'])?>
-								</div>
-								<hr>
-						
-								<div class="row">
-									<div class="col-lg-8">
-										<b><?= $this->Html->link(__('Problème de connexion'), ['controller' => 'contact', 'action' => 'add']) ?></b>
-									</div>
-									<div class="col-lg-4 text-right">
-										<?= $this->Form->button(__('Connexion'), ['class' => 'btn btn-action', 'style' => 'background: #1e1e4a;'])?>
-									</div>
-								</div>
-							
-							<?= $this->Form->end() ?>
-						</div>
+						<?= $this->Form->end() ?>
 					</div>
-
+					
 				</div>
-				
-			</article>
-			<!-- /Article -->
 
-		</div>
-	</div>	<!-- /container -->
-	
+			</div>
+			
+		</article>
+		<!-- /Article -->
+
+	</div>
+</div>	
+<!-- /container -->
+
 
